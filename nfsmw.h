@@ -13,6 +13,9 @@ enum CarRenderUsage : uint32_t {
 };
 
 #include "types/bNode.h"
+#include "types/UMath.h"
+#include "types/UCOM.h"
+#include "types/ListableSet.h"
 #include "types/Attrib.h"
 #include "types/RideInfo.h"
 #include "types/FEPlayerCarDB.h"
@@ -20,6 +23,7 @@ enum CarRenderUsage : uint32_t {
 #include "types/UserProfile.h"
 #include "types/GameFlowManager.h"
 #include "types/FEMarkerManager.h"
+#include "types/IPlayer.h"
 
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
 
