@@ -25,7 +25,7 @@ public:
 		MARKER_PINK_SLIP = 18,
 		MARKER_CASH = 19,
 		MARKER_ADD_IMPOUND_BOX = 20,
-		MARKER_IMPOUND = 21,
+		MARKER_RELEASE_IMPOUND = 21,
 	};
 
 	struct SelectableMarker {
