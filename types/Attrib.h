@@ -33,4 +33,26 @@ namespace Attrib {
 
 	auto FindCollection = (Collection*(__cdecl*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;
 	auto StringHash32 = (uint32_t(__cdecl*)(const char*))0x4519D0;
+
+	namespace Gen {
+		class pvehicle : public Instance {
+			struct _LayoutStruct {
+				UMath::Vector4 TENSOR_SCALE;
+				uint32_t MODEL;
+				char* DefaultPresetRide;
+				char* CollectionName;
+				int engine_upgrades;
+				int transmission_upgrades;
+				int nos_upgrades;
+				int brakes_upgrades;
+				float MASS;
+				int tires_upgrades;
+				uint32_t VerbalType;
+				int induction_upgrades;
+				int chassis_upgrades;
+				unsigned char HornType;
+				unsigned char TrafficEngType;
+			};
+		};
+	}
 };
