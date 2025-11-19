@@ -21,6 +21,7 @@ struct UCrc32 {
 #include "types/UCOM.h"
 #include "types/ListableSet.h"
 #include "types/Attrib.h"
+#include "types/Event.h"
 #include "types/Physics.h"
 #include "types/RideInfo.h"
 #include "types/FEPlayerCarDB.h"
@@ -40,6 +41,7 @@ struct UCrc32 {
 #include "types/IHumanAI.h"
 #include "types/IRigidBody.h"
 #include "types/GRaceStatus.h"
+#include "types/EAX_CarState.h"
 
 class FEManager {
 public:

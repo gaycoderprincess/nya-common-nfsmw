@@ -51,7 +51,10 @@ public:
 	virtual void _vf0();
 
 	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
+	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
+	static inline auto GetEventID = (const char*(__thiscall*)(GRaceParameters*))0x5FBA70;
 };
+static_assert(sizeof(GRaceParameters) == 0x14);
 
 class GRacerInfo {
 public:
@@ -100,6 +103,9 @@ public:
 	UMath::Vector3 mSavedDirection;
 	float mSavedSpeed;
 	bool mDNF;
+
+	static inline auto TotalVehicle = (void(__thiscall*)(GRacerInfo*))0x6002C0;
+	static inline auto BlowEngine = (void(__thiscall*)(GRacerInfo*))0x600420;
 };
 static_assert(sizeof(GRacerInfo) == 0x194);
 
@@ -146,5 +152,61 @@ public:
 	bool mRefreshBinAfterRace;
 
 	static inline auto& fObj = *(GRaceStatus**)0x91E000;
+
+	static inline auto DetermineRaceLength = (void(__thiscall*)(GRaceStatus*))0x5FEF30;
 };
 //static_assert(sizeof(GRaceStatus) == 0x4558);
+
+class GActivity;
+class GRaceCustom;
+class GRaceSaveInfo;
+class GState;
+
+class GRuntimeInstance : public Attrib::Instance {
+	class ConnectedInstance {
+	public:
+		unsigned int mIndexedKey;
+		GRuntimeInstance* mInstance;
+	};
+
+	unsigned short mFlags;
+	unsigned short mNumConnected;
+	ConnectedInstance* mConnected;
+	GRuntimeInstance* mPrev;
+	GRuntimeInstance* mNext;
+
+	virtual void _vf0();
+};
+static_assert(sizeof(GRuntimeInstance) == 0x28);
+
+class GActivity : public GRuntimeInstance {
+	GState* mCurrentState;
+	GState* mRegisteredHandlersState;
+};
+
+class GRaceCustom : public GRaceParameters {
+public:
+	GActivity* mRaceActivity;
+	unsigned int mNumOpponents;
+};
+//static_assert(sizeof(GRaceCustom) == 0x28);
+
+class GRaceDatabase {
+public:
+	unsigned int mRaceCountStatic;
+	unsigned int mRaceCountDynamic;
+	GRaceIndexData* mRaceIndex;
+	GRaceParameters* mRaceParameters;
+	GRaceCustom* mRaceCustom[4];
+	unsigned int mBinCount;
+	GRaceBin* mBins;
+	void* mGameplayClass;
+	GRaceCustom* mStartupRace;
+	Context mStartupRaceContext;
+	unsigned int mNumInitialUnlocks;
+	unsigned int* mInitialUnlockHash;
+	GRaceSaveInfo* mRaceScoreInfo;
+
+	static inline auto& mObj = *(GRaceDatabase**)0x91E004;
+};
+static_assert(sizeof(GRaceDatabase) == 0x40);

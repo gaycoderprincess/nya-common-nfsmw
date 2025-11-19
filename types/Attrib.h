@@ -1,17 +1,21 @@
 namespace Attrib {
 	class Vault;
+	class Class;
 
 	class Collection {
 	public:
-		uint8_t _mTable[0xC];
+		uint8_t _mTable[0x10];
 		Collection* mParent;
-		uint32_t mKey;
-		void* mClass;
+		Class* mClass;
 		void* mLayout;
+		uint32_t mRefCount;
+		uint32_t mKey;
 		Vault* mSource;
+		char* mNamePtr;
 
 		static inline auto GetData = (void*(__thiscall*)(Collection*, uint32_t attributeKey, uint32_t index))0x454190;
 	};
+	static_assert(sizeof(Collection) == 0x2C);
 
 	class Instance {
 	public:
@@ -29,6 +33,7 @@ namespace Attrib {
 		}
 
 		static inline auto GetAttributePointer = (void*(__thiscall*)(Instance*, uint32_t attributeKey, uint32_t index))0x454810;
+		static inline auto GetCollection = (uint32_t(__thiscall*)(Instance*))0x452430;
 	};
 
 	auto FindCollection = (Collection*(__cdecl*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;
