@@ -1,3 +1,17 @@
+enum eVehicleList {
+	VEHICLE_ALL = 0,
+	VEHICLE_PLAYERS = 1,
+	VEHICLE_AI = 2,
+	VEHICLE_AIRACERS = 3,
+	VEHICLE_AICOPS = 4,
+	VEHICLE_AITRAFFIC = 5,
+	VEHICLE_RACERS = 6,
+	VEHICLE_REMOTE = 7,
+	VEHICLE_INACTIVE = 8,
+	VEHICLE_TRAILERS = 9,
+	VEHICLE_MAX = 10,
+};
+
 enum DriverStyle {
 	STYLE_RACING = 0,
 	STYLE_DRAG = 1,
@@ -57,7 +71,7 @@ public:
 
 	virtual ISimable* GetSimable() = 0;
 	virtual const ISimable* _GetSimable() = 0;
-	virtual UMath::Vector3* GetPosition() = 0;
+	virtual const UMath::Vector3* GetPosition() = 0;
 	virtual void SetBehaviorOverride(UCrc32* mechanic, UCrc32* behavior) = 0;
 	virtual void RemoveBehaviorOverride(UCrc32* mechanic) = 0;
 	virtual void CommitBehaviorOverrides() = 0;
@@ -110,3 +124,6 @@ public:
 	virtual bool GetPerformance(Physics::Info::Performance *performance) = 0;
 	virtual const char* GetCacheName() = 0;
 };
+
+#define VEHICLE_LIST UTL::ListableSet<IVehicle, 20, eVehicleList, VEHICLE_MAX, 0x92CD18>
+static_assert(sizeof(VEHICLE_LIST::_buckets[0]) == 0x60);

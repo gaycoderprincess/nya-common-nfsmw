@@ -33,6 +33,16 @@ struct UCrc32 {
 #include "types/ISimable.h"
 #include "types/IBody.h"
 #include "types/IVehicle.h"
+#include "types/IEngine.h"
+#include "types/IEngineDamage.h"
+#include "types/IPerpetrator.h"
+#include "types/IRigidBody.h"
+#include "types/GRaceStatus.h"
+
+class FEManager {
+public:
+	static inline auto& mPauseRequest = *(uint32_t*)0x91CAE4;
+};
 
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
 

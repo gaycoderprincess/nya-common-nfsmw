@@ -39,12 +39,12 @@ namespace UTL {
 	};
 
 	// UTL::ListableSet<IPlayer,12,enum ePlayerList,3>::_ListSet UTL::ListableSet<IPlayer,12,enum ePlayerList,3>::_mLists
-	template <typename T, typename E, int capacity, uintptr_t listAddress>
+	template <typename T, int count, typename E, int capacity, uintptr_t listAddress>
 	class ListableSet {
 	public:
-		FixedVector<T*, 8> _buckets[capacity];
+		FixedVector<T*, count> _buckets[capacity];
 
-		static inline auto& _mLists = *(ListableSet<T, E, capacity, listAddress>*)listAddress;
+		static inline auto& _mLists = *(ListableSet<T, count, E, capacity, listAddress>*)listAddress;
 
 		static auto& GetList(E type) {
 			return _mLists._buckets[type];

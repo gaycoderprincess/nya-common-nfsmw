@@ -24,7 +24,7 @@ class IPlayer : public UCOM::IUnknown {
 public:
 	virtual ISimable* GetSimable() = 0;
 	virtual bool IsLocal() = 0;
-	virtual UMath::Vector3* GetPosition() = 0;
+	virtual const UMath::Vector3* GetPosition() = 0;
 	virtual void SetPosition(const UMath::Vector3* position) = 0;
 	virtual void* GetSettings() = 0;
 	virtual void SetSettings(int fe_index) = 0;
@@ -44,5 +44,5 @@ public:
 	virtual void ToggleGameBreaker() = 0;
 };
 
-#define PLAYER_LIST UTL::ListableSet<IPlayer, ePlayerList, PLAYER_MAX, 0x92D848>
+#define PLAYER_LIST UTL::ListableSet<IPlayer, 8, ePlayerList, PLAYER_MAX, 0x92D848>
 static_assert(sizeof(PLAYER_LIST::_buckets[0]) == 0x30);

@@ -47,10 +47,10 @@ public:
 	virtual IRigidBody* GetRigidBody() = 0;
 	virtual bool IsRigidBodySimple() = 0;
 	virtual bool IsRigidBodyComplex() = 0;
-	virtual UMath::Vector3* GetPosition() = 0;
-	virtual UMath::Matrix4* GetTransform(UMath::Matrix4*) = 0;
-	virtual UMath::Vector3* GetLinearVelocity(UMath::Vector3*) = 0;
-	virtual UMath::Vector3* GetAngularVelocity(UMath::Vector3*) = 0;
+	virtual const UMath::Vector3* GetPosition() = 0;
+	virtual const UMath::Matrix4* GetTransform(UMath::Matrix4*) = 0;
+	virtual const UMath::Vector3* GetLinearVelocity(UMath::Vector3*) = 0;
+	virtual const UMath::Vector3* GetAngularVelocity(UMath::Vector3*) = 0;
 	virtual int GetWorldID() = 0;
 	virtual EventSequencer* GetEventSequencer() = 0;
 	virtual void ProcessStimulus(unsigned int stimulus) = 0;
