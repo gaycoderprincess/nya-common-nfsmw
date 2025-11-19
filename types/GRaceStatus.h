@@ -7,7 +7,6 @@ enum Context {
 
 class GCharacter;
 class GVault;
-class GRaceParameters;
 class WorldModel;
 class EmitterGroup;
 
@@ -16,6 +15,42 @@ public:
 	float mStartTime;
 	float mTotalTime;
 	bool mRunning;
+};
+
+class GRaceIndexData {
+public:
+	unsigned int mKey;
+	char mEventID[10];
+	int16_t mChallengeGoal;
+	unsigned int mChallengeType;
+	unsigned int mRaceHash;
+	unsigned int mFlags;
+	float mLength;
+	short mLocalizationTag;
+	int16_t mCash;
+	int16_t mReputation;
+	uint16_t mRivalBest;
+	unsigned char mNumLaps;
+	unsigned char mRegion;
+	char mCopDensity;
+	char mRaceType;
+	unsigned char mMapX1;
+	unsigned char mMapY1;
+	unsigned char mMapX2;
+	unsigned char mMapY2;
+};
+static_assert(sizeof(GRaceIndexData) == 0x30);
+
+class GRaceParameters {
+public:
+	GRaceIndexData* mIndex;
+	Attrib::Instance* mRaceRecord;
+	GVault* mParentVault;
+	GVault* mChildVault;
+
+	virtual void _vf0();
+
+	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
 };
 
 class GRacerInfo {

@@ -36,6 +36,8 @@ struct UCrc32 {
 #include "types/IEngine.h"
 #include "types/IEngineDamage.h"
 #include "types/IPerpetrator.h"
+#include "types/IDamageable.h"
+#include "types/IHumanAI.h"
 #include "types/IRigidBody.h"
 #include "types/GRaceStatus.h"
 
