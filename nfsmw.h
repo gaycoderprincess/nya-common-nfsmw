@@ -38,16 +38,27 @@ struct UCrc32 {
 #include "types/IEngineDamage.h"
 #include "types/IPerpetrator.h"
 #include "types/IDamageable.h"
+#include "types/IVehicleAI.h"
+#include "types/ITrafficAI.h"
 #include "types/IHumanAI.h"
 #include "types/IRigidBody.h"
+#include "types/ICopMgr.h"
 #include "types/GRaceStatus.h"
 #include "types/EAX_CarState.h"
+#include "types/SoundAI.h"
+#include "types/cFEng.h"
 
 class FEManager {
 public:
 	static inline auto& mPauseRequest = *(uint32_t*)0x91CAE4;
 };
 
+class FadeScreen {
+public:
+	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
+};
+
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
+auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
 
 #include "nfsmwhooks.h"
