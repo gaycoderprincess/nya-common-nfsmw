@@ -154,6 +154,8 @@ public:
 	static inline auto& fObj = *(GRaceStatus**)0x91E000;
 
 	static inline auto DetermineRaceLength = (void(__thiscall*)(GRaceStatus*))0x5FEF30;
+	static inline auto DisableBarriers = (void(*)())0x5DBF00;
+	static inline auto EnableBarriers = (void(__thiscall*)(GRaceStatus*))0x5FE330;
 };
 //static_assert(sizeof(GRaceStatus) == 0x4558);
 

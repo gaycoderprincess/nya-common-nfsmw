@@ -35,3 +35,27 @@ public:
 		return ((EQuitToFE*(__thiscall*)(EQuitToFE*, eGarageType, const char*))0x62FE40)((EQuitToFE*)::Event::__nw(16), a1, a2);
 	}
 };
+
+class E911Call : public Event::Event {
+public:
+
+	static E911Call* Create() {
+		return ((E911Call*(*)())0x62A490)();
+	}
+};
+
+class EDDaySpeech : public Event::Event {
+public:
+
+	static EDDaySpeech* Create() {
+		return ((EDDaySpeech*(*)())0x62B6B0)();
+	}
+};
+
+class EResetProps : public Event::Event {
+public:
+
+	static EResetProps* Create() {
+		return ((EResetProps*(*)())0x6305B0)();
+	}
+};

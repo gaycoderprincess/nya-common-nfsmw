@@ -1,7 +1,3 @@
-typedef UMath::Vector3 bVector3;
-typedef UMath::Vector4 bVector4;
-typedef UMath::Matrix4 bMatrix4;
-
 class EAX_CarState {
 public:
 	float mMaxTorque;

@@ -12,9 +12,21 @@ public:
 };
 static_assert(sizeof(FECarRecord) == 0x14);
 
+enum eCustomTuningType {
+	CTT_SETTING_1 = 0,
+	CTT_SETTING_2 = 1,
+	CTT_SETTING_3 = 2,
+	NUM_CUSTOM_TUNINGS = 3,
+};
+
 class FECustomizationRecord {
 public:
-	uint8_t _0[0x198];
+	short InstalledPartIndices[139];
+	Physics::Package InstalledPhysics;
+	Physics::Tunings Tunings[3];
+	eCustomTuningType ActiveTuning;
+	int Preset;
+	uint8_t Handle;
 };
 static_assert(sizeof(FECustomizationRecord) == 0x198);
 

@@ -63,7 +63,6 @@ namespace VehicleFX {
 }
 
 class IVehicleAI;
-class VehicleCustomizations;
 
 class IVehicle : public UCOM::IUnknown {
 public:
@@ -118,7 +117,7 @@ public:
 	virtual bool IsAnimating() = 0;
 	virtual void SetAnimating(bool animate) = 0;
 	virtual bool IsOffWorld() = 0;
-	virtual const VehicleCustomizations* GetCustomizations() = 0;
+	virtual const FECustomizationRecord* GetCustomizations() = 0;
 	virtual const Physics::Tunings* GetTunings() = 0;
 	virtual void SetTunings(const Physics::Tunings* tunings) = 0;
 	virtual bool GetPerformance(Physics::Info::Performance *performance) = 0;

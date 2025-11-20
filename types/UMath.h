@@ -20,3 +20,7 @@ namespace UMath {
 		static inline auto& kIdentity = *(Vector3*)0x987AB0;
 	};
 }
+
+typedef UMath::Vector3 bVector3;
+typedef UMath::Vector4 bVector4;
+typedef UMath::Matrix4 bMatrix4;

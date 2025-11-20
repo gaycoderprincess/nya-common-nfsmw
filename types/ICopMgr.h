@@ -10,7 +10,7 @@ public:
 	virtual bool PursuitIsEvaded(IPursuit*) = 0;
 	virtual bool IsCopRequestPending() = 0;
 	virtual bool IsCopSpawnPending() = 0;
-	virtual void SpawnCop(const UMath::Vector3*, const UMath::Vector3*, const char*, bool, bool) = 0;
+	virtual void SpawnCop(const UMath::Vector3* InitialPos, const UMath::Vector3* InitialVec, const char* VehicleName, bool InPursuit, bool RoadBlock) = 0;
 	virtual bool PlayerPursuitHasCop() = 0;
 	virtual bool CanPursueRacers() = 0;
 	virtual bool IsPlayerPursuitActive() = 0;

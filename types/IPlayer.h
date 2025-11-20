@@ -17,6 +17,8 @@ enum ePlayerHudType : uint32_t {
 
 class ISimable;
 class IHud;
+class IInput;
+class IInputPlayer;
 class IFeedback;
 class ISteeringWheel;
 

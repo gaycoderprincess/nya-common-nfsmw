@@ -43,6 +43,11 @@ struct UCrc32 {
 #include "types/IHumanAI.h"
 #include "types/IRigidBody.h"
 #include "types/ICopMgr.h"
+#include "types/IInput.h"
+#include "types/IResetable.h"
+#include "types/ICheater.h"
+#include "types/ISpikeable.h"
+#include "types/INIS.h"
 #include "types/GRaceStatus.h"
 #include "types/EAX_CarState.h"
 #include "types/SoundAI.h"
@@ -60,5 +65,6 @@ public:
 
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
 auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
+auto SummonChyron = (void(__cdecl*)(const char*, const char*, const char*))0x595ED0;
 
 #include "nfsmwhooks.h"
