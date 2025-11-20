@@ -9,6 +9,7 @@ public:
 	uint8_t _12[0x2];
 
 	static inline auto GetDebugName = (const char*(__thiscall*)(FECarRecord*))0x581BF0;
+	static inline auto GetType = (uint32_t(__thiscall*)(FECarRecord*))0x5816B0;
 };
 static_assert(sizeof(FECarRecord) == 0x14);
 
@@ -19,14 +20,33 @@ enum eCustomTuningType {
 	NUM_CUSTOM_TUNINGS = 3,
 };
 
+class PresetCar : public bTNode<PresetCar> {
+public:
+	char CarTypeName[32];
+	char PresetName[32];
+	unsigned long long FEKey;
+	unsigned long long VehicleKey;
+	unsigned int FilterBits;
+	int PhysicsLevel;
+	int PartNameHashes[139];
+};
+static_assert(sizeof(PresetCar) == 0x290);
+
+auto FindFEPresetCar = (PresetCar*(__cdecl*)(uint32_t))0x748130;
+
 class FECustomizationRecord {
 public:
 	short InstalledPartIndices[139];
-	Physics::Package InstalledPhysics;
+	Physics::Upgrades::Package InstalledPhysics;
 	Physics::Tunings Tunings[3];
 	eCustomTuningType ActiveTuning;
 	int Preset;
 	uint8_t Handle;
+
+	static inline auto Default = (void(__thiscall*)(FECustomizationRecord*))0x56F1B0;
+	static inline auto BecomePreset = (void(__thiscall*)(FECustomizationRecord*, PresetCar* preset))0x56F340;
+	static inline auto WriteRecordIntoRide = (void(__thiscall*)(FECustomizationRecord*, RideInfo* ride))0x56F2B0;
+	static inline auto WriteRideIntoRecord = (void(__thiscall*)(FECustomizationRecord*, const RideInfo* ride))0x56F2F0;
 };
 static_assert(sizeof(FECustomizationRecord) == 0x198);
 

@@ -6,6 +6,11 @@ namespace Physics {
 			float upperBound;
 			float position;
 		};
+
+		class Package {
+			int Part[7];
+			int Junkman;
+		};
 	}
 
 	namespace Info {
@@ -31,11 +36,6 @@ namespace Physics {
 		};
 
 		float Value[MAX_TUNINGS];
-	};
-
-	class Package {
-		int Part[7];
-		int Junkman;
 	};
 }
 static_assert(sizeof(Physics::Upgrades::Tuning) == 0xC);

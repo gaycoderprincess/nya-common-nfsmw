@@ -52,6 +52,7 @@ struct UCrc32 {
 #include "types/EAX_CarState.h"
 #include "types/SoundAI.h"
 #include "types/cFEng.h"
+#include "types/PVehicle.h"
 
 class FEManager {
 public:
