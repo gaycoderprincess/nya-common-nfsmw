@@ -24,6 +24,8 @@ class EventSequencer;
 
 class ISimable : public UCOM::IUnknown {
 public:
+	static inline uint32_t IHandle = 0x402830;
+
 	virtual SimableType GetSimableType() = 0;
 	virtual void Kill() = 0;
 	virtual void Attach(UCOM::IUnknown* object) = 0;
