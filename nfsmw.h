@@ -47,6 +47,7 @@ struct UCrc32 {
 #include "types/IResetable.h"
 #include "types/ICheater.h"
 #include "types/ISpikeable.h"
+#include "types/ITransmission.h"
 #include "types/INIS.h"
 #include "types/GRaceStatus.h"
 #include "types/EAX_CarState.h"
@@ -64,7 +65,14 @@ public:
 	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
 };
 
+class EAXSound {
+public:
+	static inline auto ReStartRace = (void(__thiscall*)(EAXSound*, bool is321))0x4C2170;
+};
+auto& g_pEAXSound = *(EAXSound**)0x911FA8;
+
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
+auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
 auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
 auto SummonChyron = (void(__cdecl*)(const char*, const char*, const char*))0x595ED0;
 

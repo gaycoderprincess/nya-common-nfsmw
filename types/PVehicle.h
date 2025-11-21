@@ -14,8 +14,8 @@ class VehicleParams : public Sim::Param {
 public:
 	DriverClass carClass;
 	unsigned int carType;
-	UMath::Vector3* initialVec;
-	UMath::Vector3* initialPos;
+	const UMath::Vector3* initialVec;
+	const UMath::Vector3* initialPos;
 	FECustomizationRecord* customization;
 	IVehicleCache* VehicleCache = nullptr;
 	Physics::Info::Performance* matched = nullptr;

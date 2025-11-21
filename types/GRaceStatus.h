@@ -50,6 +50,7 @@ public:
 
 	virtual void _vf0();
 
+	static inline auto GetRaceType = (int(__thiscall*)(GRaceParameters*))0x5FAA20;
 	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
 	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
 	static inline auto GetEventID = (const char*(__thiscall*)(GRaceParameters*))0x5FBA70;
