@@ -8,7 +8,19 @@ namespace Physics {
 		};
 
 		class Package {
-			int Part[7];
+		public:
+			enum Type {
+				PUT_TIRES = 0,
+				PUT_BRAKES = 1,
+				PUT_CHASSIS = 2,
+				PUT_TRANSMISSION = 3,
+				PUT_ENGINE = 4,
+				PUT_INDUCTION = 5,
+				PUT_NOS = 6,
+				PUT_MAX = 7,
+			};
+
+			int Part[PUT_MAX];
 			int Junkman;
 		};
 	}
