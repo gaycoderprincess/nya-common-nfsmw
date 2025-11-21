@@ -6,6 +6,7 @@ public:
 	virtual int GetNumWheels() = 0;
 	virtual const UMath::Vector3* GetWheelPos(uint32_t) = 0;
 	virtual const UMath::Vector3* GetWheelLocalPos(uint32_t) = 0;
+	virtual const UMath::Vector3* GetWheelCenterPos(uint32_t) = 0;
 	virtual float GetWheelLoad() = 0;
 	virtual void ApplyVehicleEntryForces(bool, const UMath::Vector3*, bool) = 0;
 	virtual float GetWheelRoadHeight(uint32_t) = 0;
