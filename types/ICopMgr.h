@@ -1,6 +1,8 @@
 class IPursuit;
 class ICopMgr : public UCOM::IUnknown {
 public:
+	static inline uint32_t IHandle = 0x404D80;
+
 	static inline auto& mInstance = *(ICopMgr**)0x92C67C;
 	static inline auto& mDisableCops = *(bool*)0x90D5EC;
 

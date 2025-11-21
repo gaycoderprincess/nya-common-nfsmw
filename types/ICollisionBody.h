@@ -1,0 +1,46 @@
+class ICollisionBody : public UCOM::IUnknown {
+public:
+	static inline uint32_t IHandle = 0x4039C0;
+
+	virtual const UMath::Vector3* GetPosition() = 0;
+	virtual const UMath::Vector3* GetLinearVelocity() = 0;
+	virtual const UMath::Vector3* GetAngularVelocity() = 0;
+	virtual UMath::Vector3* GetDimension(UMath::Vector3*) = 0;
+	virtual void Damp(float) = 0;
+	virtual void SetAnimating(bool) = 0;
+	virtual bool IsModeling() = 0;
+	virtual void DisableModeling() = 0;
+	virtual void EnableModeling() = 0;
+	virtual bool IsTriggering() = 0;
+	virtual void DisableTriggering() = 0;
+	virtual void EnableTriggering() = 0;
+	virtual bool IsSleeping() = 0;
+	virtual void SetCenterOfGravity(const UMath::Vector3*) = 0;
+	virtual const UMath::Vector3* GetCenterOfGravity() = 0;
+	virtual bool HasHadCollision() = 0;
+	virtual bool HasHadWorldCollision() = 0;
+	virtual bool HasHadObjectCollision() = 0;
+	virtual void EnableCollisionGeometries(UCrc32, bool) = 0;
+	virtual void DistributeMass() = 0;
+	virtual const UMath::Vector3* GetWorldMomentScale() = 0;
+	virtual const UMath::Vector3* GetGroundMomentScale() = 0;
+	virtual bool IsAttachedToWorld() = 0;
+	virtual void AttachedToWorld(bool, float) = 0;
+	virtual bool IsAnchored() = 0;
+	virtual void SetAnchored(bool) = 0;
+	virtual void SetInertiaTensor(const UMath::Vector3*) = 0;
+	virtual const UMath::Vector3* GetInertiaTensor() = 0;
+	virtual float GetOrientToGround() = 0;
+	virtual bool IsInGroundContact() = 0;
+	virtual int GetNumContactPoints() = 0;
+	virtual const UMath::Vector4* GetGroundNormal() = 0;
+	virtual void SetForce(const UMath::Vector3*) = 0;
+	virtual void SetTorque(const UMath::Vector3*) = 0;
+	virtual const UMath::Vector3* GetForce() = 0;
+	virtual const UMath::Vector3* GetTorque() = 0;
+	virtual float GetGravity() = 0;
+	virtual const UMath::Vector3* GetForwardVector() = 0;
+	virtual const UMath::Vector3* GetRightVector() = 0;
+	virtual const UMath::Vector3* GetUpVector() = 0;
+	virtual const UMath::Matrix4* GetMatrix4() = 0;
+};
