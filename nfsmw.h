@@ -68,6 +68,7 @@ typedef uint32_t HSIMTASK;
 #include "types/PresetCar.h"
 #include "types/AICopManager.h"
 #include "types/SimSystem.h"
+#include "types/EAXSound.h"
 
 class FEManager {
 public:
@@ -78,12 +79,6 @@ class FadeScreen {
 public:
 	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
 };
-
-class EAXSound {
-public:
-	static inline auto ReStartRace = (void(__thiscall*)(EAXSound*, bool is321))0x4C2170;
-};
-auto& g_pEAXSound = *(EAXSound**)0x911FA8;
 
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
 auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;

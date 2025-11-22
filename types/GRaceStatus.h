@@ -122,7 +122,7 @@ public:
 	BinStats mStats;
 };
 
-class GRaceStatus : public UCOM::Object, UCOM::IUnknown {
+class GRaceStatus : public UCOM::Object, IVehicleCache {
 public:
 	enum PlayMode {
 		kPlayMode_Roaming = 0,
