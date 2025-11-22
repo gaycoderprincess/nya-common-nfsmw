@@ -1,3 +1,15 @@
+enum CarRenderUsage : uint32_t {
+	CarRenderUsage_Player,
+	CarRenderUsage_RemotePlayer,
+	CarRenderUsage_AIRacer,
+	CarRenderUsage_AICop,
+	CarRenderUsage_AITraffic,
+	CarRenderUsage_AIHeli,
+	carRenderUsage_NISCar,
+	CarRenderUsage_Ghost,
+	CarRenderUsage_Invalid,
+};
+
 class RideInfo {
 public:
 	uint32_t Type; // +0

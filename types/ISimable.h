@@ -14,9 +14,6 @@ namespace Sim {
 	class IEntity : public UCOM::IUnknown {};
 }
 
-typedef uint32_t HSIMABLE;
-typedef uint32_t HCAUSE;
-
 class IRigidBody;
 class IModel;
 class WWorldPos;

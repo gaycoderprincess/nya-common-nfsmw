@@ -1,43 +1,21 @@
 #include <d3d9.h>
 
-enum CarRenderUsage : uint32_t {
-	CarRenderUsage_Player,
-	CarRenderUsage_RemotePlayer,
-	CarRenderUsage_AIRacer,
-	CarRenderUsage_AICop,
-	CarRenderUsage_AITraffic,
-	CarRenderUsage_AIHeli,
-	carRenderUsage_NISCar,
-	CarRenderUsage_Ghost,
-	CarRenderUsage_Invalid,
-};
-
 struct UCrc32 {
 	uint32_t mCRC;
 };
 
-namespace VehicleClass {
-	auto& TRACTOR = *(UCrc32*)0x92C4F0;
-	auto& CHOPPER = *(UCrc32*)0x92C4F4;
-	auto& TANK = *(UCrc32*)0x92C4F8;
-	auto& TRAIN = *(UCrc32*)0x92C4FC;
-	auto& TRANSPORT = *(UCrc32*)0x92C500;
-	auto& TRAILER = *(UCrc32*)0x92C504;
-	auto& SUBMARINE = *(UCrc32*)0x92C508;
-	auto& PLANE = *(UCrc32*)0x92C50C;
-	auto& CAR = *(UCrc32*)0x92C52C;
-	auto& RC = *(UCrc32*)0x92C53C;
-	auto& BIKE = *(UCrc32*)0x92C5A8;
-	auto& BOAT = *(UCrc32*)0x92C5F8;
-	auto& HOVER = *(UCrc32*)0x92C620;
-	auto& SNOWMOBILE = *(UCrc32*)0x92C63C;
-}
+typedef uint32_t HSIMABLE;
+typedef uint32_t HCAUSE;
+typedef uint32_t HMODEL;
+typedef uint32_t HSIMPROFILE;
+typedef uint32_t HSIMTASK;
 
 #include "types/bNode.h"
 #include "types/UMath.h"
 #include "types/UCOM.h"
 #include "types/ListableSet.h"
 #include "types/Attrib.h"
+#include "types/VehicleClass.h"
 #include "types/Event.h"
 #include "types/Physics.h"
 #include "types/RideInfo.h"
@@ -80,13 +58,16 @@ namespace VehicleClass {
 #include "types/INIS.h"
 #include "types/IVehicleCache.h"
 #include "types/IPursuit.h"
+#include "types/IGameState.h"
 #include "types/GRaceStatus.h"
 #include "types/EAX_CarState.h"
 #include "types/SoundAI.h"
 #include "types/cFEng.h"
 #include "types/PVehicle.h"
+#include "types/Explosion.h"
 #include "types/PresetCar.h"
 #include "types/AICopManager.h"
+#include "types/SimSystem.h"
 
 class FEManager {
 public:
