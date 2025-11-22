@@ -47,7 +47,7 @@ namespace Physics {
 			MAX_TUNINGS = 7,
 		};
 
-		float Value[MAX_TUNINGS];
+		float Value[MAX_TUNINGS] = {};
 	};
 }
 static_assert(sizeof(Physics::Upgrades::Tuning) == 0xC);

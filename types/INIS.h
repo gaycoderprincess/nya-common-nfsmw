@@ -15,6 +15,8 @@ class ICEScene;
 
 class INIS : public UCOM::IUnknown {
 public:
+	static inline uint32_t IHandle = 0x445660;
+
 	static inline auto& mInstance = *(INIS**)0x9885C8;
 
 	virtual void AddCar(UCrc32, IVehicle*) = 0;

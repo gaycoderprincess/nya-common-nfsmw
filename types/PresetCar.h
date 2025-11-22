@@ -2,9 +2,9 @@ class PresetCar : public bTNode<PresetCar> {
 public:
 	char CarTypeName[32];
 	char PresetName[32];
-	unsigned long long FEKey;
-	unsigned long long VehicleKey;
-	unsigned int FilterBits;
+	uint64_t FEKey;
+	uint64_t VehicleKey;
+	uint32_t FilterBits;
 	int PhysicsLevel;
 	int PartNameHashes[139];
 };

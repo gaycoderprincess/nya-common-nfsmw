@@ -31,6 +31,7 @@ typedef uint32_t HSIMTASK;
 #include "types/IBody.h"
 #include "types/IVehicle.h"
 #include "types/IEngine.h"
+#include "types/IRaceEngine.h"
 #include "types/IDragEngine.h"
 #include "types/IEngineDamage.h"
 #include "types/IPerpetrator.h"
@@ -59,6 +60,8 @@ typedef uint32_t HSIMTASK;
 #include "types/IVehicleCache.h"
 #include "types/IPursuit.h"
 #include "types/IGameState.h"
+#include "types/ISceneryModel.h"
+#include "types/IHud.h"
 #include "types/GRaceStatus.h"
 #include "types/EAX_CarState.h"
 #include "types/SoundAI.h"
@@ -83,6 +86,15 @@ public:
 auto GetLocalizedString = (const char*(__cdecl*)(uint32_t stringLabel))0x56BC10;
 auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
 auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
+
+class Chyron {
+public:
+	static inline auto& mTitle = *(const char**)0x8F3C48;
+	static inline auto& mArtist = *(const char**)0x8F3C4C;
+	static inline auto& mAlbum = *(const char**)0x8F3C50;
+};
 auto SummonChyron = (void(__cdecl*)(const char*, const char*, const char*))0x595ED0;
+
+auto& g_VisualTreatment = *(bool*)0x901828;
 
 #include "nfsmwhooks.h"

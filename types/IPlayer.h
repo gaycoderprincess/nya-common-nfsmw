@@ -24,6 +24,8 @@ class ISteeringWheel;
 
 class IPlayer : public UCOM::IUnknown {
 public:
+	static inline uint32_t IHandle = 0x6200D0;
+
 	virtual ISimable* GetSimable() = 0;
 	virtual bool IsLocal() = 0;
 	virtual const UMath::Vector3* GetPosition() = 0;
