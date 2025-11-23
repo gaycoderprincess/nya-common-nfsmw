@@ -15,8 +15,10 @@ namespace Sim {
 	public:
 		static inline uint32_t IHandle = 0x6E8280;
 
-		virtual float OnManageTime(float real_time_delta, float sim_speed);
+		virtual float OnManageTime(float real_time_delta, float sim_speed) = 0;
 	};
+
+	auto SetStream = (void(__cdecl*)(const UMath::Vector3* location, bool blocking))0x6F1170;
 }
 
 class IActivity;
