@@ -10,14 +10,14 @@ namespace UMath {
 	public:
 		float x, y, z, w;
 
-		static inline auto& kIdentity = *(Vector3*)0x8A2FD0;
+		static inline auto& kIdentity = *(Vector4*)0x8A2FD0;
 	};
 
 	class Matrix4 {
 	public:
 		UMath::Vector4 _v0, _v1, _v2, _v3;
 
-		static inline auto& kIdentity = *(Vector3*)0x987AB0;
+		static inline auto& kIdentity = *(Matrix4*)0x987AB0;
 	};
 }
 
