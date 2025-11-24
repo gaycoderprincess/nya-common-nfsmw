@@ -109,7 +109,7 @@ public:
 	unsigned int CurrentCar;
 	unsigned int SpecialFlags;
 	unsigned char CurrentBin;
-	unsigned int CurrentCash;
+	int CurrentCash;
 	short AdaptiveDifficulty;
 	SMSMessage SMSMessages[150];
 	unsigned short SMSSortOrder;
