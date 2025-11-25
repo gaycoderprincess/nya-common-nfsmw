@@ -1,6 +1,12 @@
 namespace Attrib {
 	class Vault;
-	class Class;
+	class Collection;
+
+	class Class {
+	public:
+		static inline auto GetFirstCollection = (uint32_t(__thiscall*)(Class*))0x456B00;
+		static inline auto GetNextCollection = (uint32_t(__thiscall*)(Class*, uint32_t))0x456B20;
+	};
 
 	class Collection {
 	public:
@@ -34,6 +40,13 @@ namespace Attrib {
 
 		static inline auto GetAttributePointer = (void*(__thiscall*)(Instance*, uint32_t attributeKey, uint32_t index))0x454810;
 		static inline auto GetCollection = (uint32_t(__thiscall*)(Instance*))0x452430;
+	};
+
+	class Database {
+	public:
+		static inline auto& sThis = *(Database**)0x90DCBC;
+
+		static inline auto GetClass = (Class*(__thiscall*)(Database*, uint32_t))0x455BC0;
 	};
 
 	auto FindCollection = (Collection*(__cdecl*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;
