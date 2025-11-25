@@ -19,6 +19,14 @@ public:
 	}
 };
 
+class EPause : public Event::Event {
+public:
+
+	static EPause* Create(int a1, int a2, int a3) {
+		return ((EPause*(__thiscall*)(EPause*, int, int, int))0x623A90)((EPause*)::Event::__nw(20), a1, a2, a3);
+	}
+};
+
 enum eGarageType {
 	GARAGETYPE_NONE = 0,
 	GARAGETYPE_MAIN_FE = 1,
