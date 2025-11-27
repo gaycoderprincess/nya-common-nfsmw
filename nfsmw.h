@@ -97,6 +97,7 @@ auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
 auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
 
+auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_VisualTreatment = *(bool*)0x901828;
 
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
