@@ -76,6 +76,7 @@ typedef uint32_t HSIMTASK;
 #include "types/Camera.h"
 #include "types/eView.h"
 #include "types/StringRecord.h"
+#include "types/GrandSceneryCullInfo.h"
 
 class FEManager {
 public:

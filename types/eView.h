@@ -87,6 +87,8 @@ public:
 	ScreenEffectDB* ScreenEffects; // +64
 	Rain* Precipitation; // +68
 	FacePixelation* facePixelation; // +6C
+
+	static inline auto GetVisibleState = (int(__thiscall*)(eView*, const bVector3* aabb_min, const bVector3* aabb_max, bMatrix4* local_world))0x6CF2B0;
 };
 static_assert(sizeof(eView) == 0x70);
 

@@ -94,3 +94,4 @@ public:
 };
 
 auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
+auto& Tweak_ForceICEReplay = *(bool*)0x91103A;
