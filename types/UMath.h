@@ -21,6 +21,9 @@ namespace UMath {
 	};
 }
 
-typedef UMath::Vector3 bVector3;
+class bVector3 : public UMath::Vector3 {
+	float pad;
+};
+
 typedef UMath::Vector4 bVector4;
 typedef UMath::Matrix4 bMatrix4;

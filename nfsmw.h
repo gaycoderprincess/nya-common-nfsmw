@@ -73,6 +73,7 @@ typedef uint32_t HSIMTASK;
 #include "types/AICopManager.h"
 #include "types/SimSystem.h"
 #include "types/EAXSound.h"
+#include "types/eView.h"
 
 class FEManager {
 public:

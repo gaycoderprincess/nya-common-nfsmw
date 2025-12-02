@@ -6,6 +6,8 @@ namespace NyaHooks {
 	std::vector<void(*)()> aPreHUDDrawFuncs;
 	std::vector<void(*)()> aWorldServiceFuncs;
 	std::vector<void(*)(HWND, UINT, WPARAM, LPARAM)> aWndProcFuncs;
+	std::vector<void(*)()> aCameraFuncs;
+	std::vector<void(*)()> aLateInitFuncs;
 	bool bInputsBlocked = false;
 
 	auto EndSceneOrig = (void(__cdecl*)(void*))nullptr;
@@ -46,6 +48,22 @@ namespace NyaHooks {
 		return InputBlockerOrig();
 	}
 
+	auto CameraOrig = (void(__cdecl*)())nullptr;
+	void __cdecl CameraHook() {
+		for (auto& func : aCameraFuncs) {
+			func();
+		}
+		return CameraOrig();
+	}
+
+	auto LateInitOrig = (void(__cdecl*)(int, char**))nullptr;
+	void __cdecl LateInitHook(int a1, char** a2) {
+		LateInitOrig(a1, a2);
+		for (auto& func : aLateInitFuncs) {
+			func();
+		}
+	}
+
 	auto WndProcOrig = (LRESULT(__stdcall*)(HWND, UINT, WPARAM, LPARAM))nullptr;
 	LRESULT __stdcall WndProcHook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		for (auto& func : aWndProcFuncs) {
@@ -78,6 +96,18 @@ namespace NyaHooks {
 		if (!WndProcOrig) {
 			WndProcOrig = (LRESULT(__stdcall*)(HWND, UINT, WPARAM, LPARAM))(*(uintptr_t*)0x6E6AF1);
 			NyaHookLib::Patch(0x6E6AF1, &WndProcHook);
+		}
+	}
+
+	void PlaceCameraHook() {
+		if (!CameraOrig) {
+			CameraOrig = (void(__cdecl*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6E736F, &CameraHook);
+		}
+	}
+
+	void PlaceLateInitHook() {
+		if (!LateInitOrig) {
+			LateInitOrig = (void(__cdecl*)(int, char**))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6665B4, &LateInitHook);
 		}
 	}
 }

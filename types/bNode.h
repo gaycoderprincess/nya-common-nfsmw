@@ -12,9 +12,12 @@ class bTNode : public bNode<T> {};
 template<typename T>
 class bList {
 public:
-	bNode<T>* HeadNode;
+	bNode<T> HeadNode;
 
 	bool empty() {
 		return (void*)HeadNode == (void*)&this;
 	}
 };
+
+template<typename T>
+class bTList : public bList<T> {};
