@@ -7,40 +7,6 @@ class FacePixelation;
 class CameraMover;
 class eView;
 
-struct CameraParams {
-	bMatrix4 Matrix;
-	bVector3 Position;
-	bVector3 Direction;
-	bVector3 Target;
-	bVector4 NoiseFrequency1;
-	bVector4 NoiseAmplitude1;
-	bVector4 NoiseFrequency2;
-	bVector4 NoiseAmplitude2;
-	float TargetDistance;
-	float FocalDistance;
-	float DepthOfField;
-	float NearZ;
-	float FarZ;
-	unsigned short FieldOfView;
-	float LB_height;
-	float SimTimeMultiplier;
-	unsigned short DummyAngle;
-};
-static_assert(sizeof(CameraParams) == 0xD4);
-
-class Camera {
-public:
-	CameraParams CurrentKey;
-	CameraParams PreviousKey;
-	CameraParams VelocityKey;
-	bool bClearVelocity;
-	float ElapsedTime;
-	int LastUpdateTime;
-	int LastDisparateTime;
-	int RenderDash;
-};
-static_assert(sizeof(Camera) == 0x290);
-
 enum EVIEW_ID {
 	EVIEW_FIRST = 0,
 	EVIEW_FLAILER = 0,
