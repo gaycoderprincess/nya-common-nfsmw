@@ -96,5 +96,6 @@ auto& g_MotionBlurEnable = *(bool*)0x9017DC;
 auto& g_VisualTreatment = *(bool*)0x901828;
 
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
+auto& DrawCars = *(bool*)0x903320;
 
 #include "nfsmwhooks.h"

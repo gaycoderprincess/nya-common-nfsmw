@@ -157,6 +157,7 @@ public:
 	static inline auto DetermineRaceLength = (void(__thiscall*)(GRaceStatus*))0x5FEF30;
 	static inline auto DisableBarriers = (void(*)())0x5DBF00;
 	static inline auto EnableBarriers = (void(__thiscall*)(GRaceStatus*))0x5FE330;
+	static inline auto GetRaceTimeRemaining = (float(__thiscall*)(GRaceStatus*))0x5FE090;
 };
 //static_assert(sizeof(GRaceStatus) == 0x4558);
 

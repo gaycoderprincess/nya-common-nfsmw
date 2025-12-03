@@ -19,6 +19,7 @@ namespace Sim {
 	};
 
 	auto SetStream = (void(__cdecl*)(const UMath::Vector3* location, bool blocking))0x6F1170;
+	auto GetTime = (float(__cdecl*)())0x6E8DE0;
 }
 
 class IActivity;
