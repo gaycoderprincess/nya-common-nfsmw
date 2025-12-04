@@ -9,6 +9,7 @@ namespace NyaHooks {
 	std::vector<void(*)()> aCameraFuncs;
 	std::vector<void(*)(CameraMover*)> aCameraMoverFuncs;
 	std::vector<void(*)()> aLateInitFuncs;
+	std::vector<void(*)()> aRenderFuncs;
 	bool bInputsBlocked = false;
 
 	auto EndSceneOrig = (void(__cdecl*)(void*))nullptr;
@@ -73,6 +74,14 @@ namespace NyaHooks {
 		}
 	}
 
+	auto RenderOrig = (void(__cdecl*)())nullptr;
+	void __cdecl RenderHook() {
+		RenderOrig();
+		for (auto& func : aRenderFuncs) {
+			func();
+		}
+	}
+
 	auto WndProcOrig = (LRESULT(__stdcall*)(HWND, UINT, WPARAM, LPARAM))nullptr;
 	LRESULT __stdcall WndProcHook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		for (auto& func : aWndProcFuncs) {
@@ -124,6 +133,15 @@ namespace NyaHooks {
 	void PlaceLateInitHook() {
 		if (!LateInitOrig) {
 			LateInitOrig = (void(__cdecl*)(int, char**))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6665B4, &LateInitHook);
+		}
+	}
+
+	void PlaceRenderHook() {
+		if (!RenderOrig) {
+			//0x6DED37
+			//0x6DEEC6
+			//0x6DF24E
+			RenderOrig = (void(__cdecl*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6DED37, &RenderHook);
 		}
 	}
 }

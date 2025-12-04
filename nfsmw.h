@@ -77,6 +77,7 @@ typedef uint32_t HSIMTASK;
 #include "types/eView.h"
 #include "types/StringRecord.h"
 #include "types/GrandSceneryCullInfo.h"
+#include "types/eEffect.h"
 
 class FEManager {
 public:
