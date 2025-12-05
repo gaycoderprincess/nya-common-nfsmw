@@ -6,7 +6,7 @@ public:
 	virtual int GetNumWheels() = 0;
 	virtual const UMath::Vector3* GetWheelPos(uint32_t) = 0;
 	virtual const UMath::Vector3* GetWheelLocalPos(uint32_t) = 0;
-	virtual const UMath::Vector3* GetWheelCenterPos(uint32_t) = 0;
+	virtual UMath::Vector3* GetWheelCenterPos(UMath::Vector3*, uint32_t) = 0;
 	virtual float GetWheelLoad() = 0;
 	virtual void ApplyVehicleEntryForces(bool, const UMath::Vector3*, bool) = 0;
 	virtual float GetWheelRoadHeight(uint32_t) = 0;
@@ -26,9 +26,9 @@ public:
 	virtual float GetWheelSteer(uint32_t) = 0;
 	virtual float CalculateUndersteerFactor() = 0;
 	virtual float CalculateOversteerFactor() = 0;
-	virtual float GetRideHeight(uint32_t) = 0;
+	virtual float GetRideHeight(uint32_t idx) = 0;
 	virtual float GetWheelRadius(uint32_t) = 0;
 	virtual float GetMaxSteering() = 0;
 	virtual void MatchSpeed(float) = 0;
-	virtual void* GetRenderMotion() = 0;
+	virtual float GetRenderMotion() = 0;
 };

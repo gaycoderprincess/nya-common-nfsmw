@@ -1,9 +1,22 @@
+struct InputControls {
+	float fBanking;
+	float fSteering;
+	float fSteeringVertical;
+	float fStrafeVertical;
+	float fStrafeHorizontal;
+	float fGas;
+	float fBrake;
+	float fHandBrake;
+	bool fActionButton;
+	bool fNOS;
+};
+
 class IInput : public UCOM::IUnknown {
 public:
 	static inline uint32_t IHandle = 0x403F90;
 
 	virtual void ClearInput() = 0;
-	virtual void* GetControls() = 0;
+	virtual InputControls* GetControls() = 0;
 	virtual bool GetControlHandBrake() = 0;
 	virtual bool GetControlActionButton() = 0;
 	virtual void SetControlSteering(float) = 0;

@@ -52,7 +52,7 @@ public:
 	ID3DXEffect* hD3DXEffect;
 	IDirect3DVertexDeclaration9* VertexDecl;
 
-	virtual void dtor() = 0;
+	virtual void _vf0() = 0;
 	virtual void Start() = 0;
 	virtual void End() = 0;
 };
