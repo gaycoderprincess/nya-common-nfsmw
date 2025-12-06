@@ -6,8 +6,9 @@ public:
 	uint32_t FilterBits; // +C
 	int8_t Customization; // +10
 	int8_t CareerHandle; // +11
-	uint8_t _12[0x2];
+	uint16_t Padd; // +12
 
+	static inline auto Default = (void(__thiscall*)(FECarRecord*))0x5815B0;
 	static inline auto GetDebugName = (const char*(__thiscall*)(FECarRecord*))0x581BF0;
 	static inline auto GetType = (uint32_t(__thiscall*)(FECarRecord*))0x5816B0;
 };
@@ -83,6 +84,7 @@ public:
 	static inline auto GetCareerRecordByHandle = (FECareerRecord*(__thiscall*)(FEPlayerCarDB*, int8_t handle))0x56F120;
 	static inline auto GetNumCareerCars = (int(__thiscall*)(FEPlayerCarDB*))0x590700;
 
+	static inline auto CreateCar = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, uint32_t fromCar, uint32_t filterBits))0x590BD0;
 	static inline auto CreateNewCareerCar = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, uint32_t fromCar))0x599D20;
 	static inline auto CreateNewCustomCar = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, uint32_t fromCar))0x599CF0;
 	static inline auto CreateNewPresetCar = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, const char* name))0x590A20;

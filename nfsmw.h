@@ -16,6 +16,7 @@ typedef uint32_t HSIMTASK;
 #include "types/ListableSet.h"
 #include "types/Attrib.h"
 #include "types/VehicleClass.h"
+#include "types/FEManager.h"
 #include "types/Event.h"
 #include "types/Chyron.h"
 #include "types/Physics.h"
@@ -79,11 +80,6 @@ typedef uint32_t HSIMTASK;
 #include "types/GrandSceneryCullInfo.h"
 #include "types/eEffect.h"
 
-class FEManager {
-public:
-	static inline auto& mPauseRequest = *(uint32_t*)0x91CAE4;
-};
-
 class FadeScreen {
 public:
 	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
@@ -99,5 +95,6 @@ auto& g_VisualTreatment = *(bool*)0x901828;
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
 auto& DrawLightFlares = *(bool*)0x8F2918;
+auto& UnlockAllThings = *(bool*)0x926124;
 
 #include "nfsmwhooks.h"
