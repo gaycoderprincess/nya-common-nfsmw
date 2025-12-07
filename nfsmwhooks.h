@@ -9,6 +9,7 @@ namespace NyaHooks {
 	std::vector<void(*)()> aCameraFuncs;
 	std::vector<void(*)(CameraMover*)> aCameraMoverFuncs;
 	std::vector<void(*)()> aLateInitFuncs;
+	std::vector<void(*)()> aPreRenderFuncs;
 	std::vector<void(*)()> aRenderFuncs;
 	bool bInputsBlocked = false;
 
@@ -76,6 +77,9 @@ namespace NyaHooks {
 
 	auto RenderOrig = (void(__cdecl*)())nullptr;
 	void __cdecl RenderHook() {
+		for (auto& func : aPreRenderFuncs) {
+			func();
+		}
 		RenderOrig();
 		for (auto& func : aRenderFuncs) {
 			func();
