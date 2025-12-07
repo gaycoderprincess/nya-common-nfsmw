@@ -35,6 +35,8 @@ enum EEFFECT_ID : uint32_t {
 	EEFFECT_WORLDNORMALMAPNOFOG = 0x1E,
 };
 
+class ID3DXEffect;
+
 class eEffect {
 public:
 	EEFFECT_ID ID;
