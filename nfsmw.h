@@ -96,5 +96,6 @@ auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
 auto& DrawLightFlares = *(bool*)0x8F2918;
 auto& UnlockAllThings = *(bool*)0x926124;
+auto& WorldTimeElapsed = *(float*)0x925970;
 
 #include "nfsmwhooks.h"
