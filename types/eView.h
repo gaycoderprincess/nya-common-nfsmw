@@ -6,6 +6,8 @@ class Rain;
 class FacePixelation;
 class CameraMover;
 class eView;
+class eModel;
+class eLightContext;
 
 enum EVIEW_ID {
 	EVIEW_FIRST = 0,
@@ -62,6 +64,7 @@ public:
 	eViewPlatInfo* PlatInfo;
 
 	static inline auto GetScreenPosition = (void(__thiscall*)(eViewPlatInterface*, bVector3* screen_position, const bVector3* world_position))0x6BE940;
+	static inline auto Render = (void(__thiscall*)(eViewPlatInterface*, eModel* model, bMatrix4* local_world, eLightContext* light_context, unsigned int flags, bMatrix4* blending_matricies))0x6DA9B0;
 };
 
 class eView : public eViewPlatInterface {
