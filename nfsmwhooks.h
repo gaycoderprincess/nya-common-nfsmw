@@ -11,6 +11,8 @@ namespace NyaHooks {
 	std::vector<void(*)()> aLateInitFuncs;
 	std::vector<void(*)()> aPreRenderFuncs;
 	std::vector<void(*)()> aRenderFuncs;
+	std::vector<void(*)()> aPrePropsRenderFuncs;
+	std::vector<void(*)()> aPropsRenderFuncs;
 	bool bInputsBlocked = false;
 
 	auto EndSceneOrig = (void(__cdecl*)(void*))nullptr;
@@ -86,6 +88,17 @@ namespace NyaHooks {
 		}
 	}
 
+	auto PropsRenderOrig = (void(__cdecl*)())nullptr;
+	void __cdecl PropsRenderHook() {
+		for (auto& func : aPrePropsRenderFuncs) {
+			func();
+		}
+		PropsRenderOrig();
+		for (auto& func : aPropsRenderFuncs) {
+			func();
+		}
+	}
+
 	auto WndProcOrig = (LRESULT(__stdcall*)(HWND, UINT, WPARAM, LPARAM))nullptr;
 	LRESULT __stdcall WndProcHook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		for (auto& func : aWndProcFuncs) {
@@ -146,6 +159,12 @@ namespace NyaHooks {
 			//0x6DEEC6
 			//0x6DF24E
 			RenderOrig = (void(__cdecl*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6DED37, &RenderHook);
+		}
+	}
+
+	void PlacePropsRenderHook() {
+		if (!PropsRenderOrig) {
+			PropsRenderOrig = (void(__cdecl*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6DEDA0, &PropsRenderHook);
 		}
 	}
 }
