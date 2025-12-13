@@ -76,6 +76,7 @@ typedef uint32_t HSIMTASK;
 #include "types/EAXSound.h"
 #include "types/Camera.h"
 #include "types/eView.h"
+#include "types/eModel.h"
 #include "types/StringRecord.h"
 #include "types/GrandSceneryCullInfo.h"
 #include "types/eEffect.h"
