@@ -31,6 +31,8 @@ namespace Attrib {
 		uint32_t mMsgPort;
 		uint32_t mFlags;
 
+		Instance() {}
+
 		Instance(const Collection* collection, uint32_t msgPort, void* pInterface) {
 			((Instance*(__thiscall*)(Instance*, const Collection*, uint32_t, void*))0x452380)(this, collection, msgPort, pInterface);
 		}
@@ -52,13 +54,20 @@ namespace Attrib {
 	auto FindCollection = (Collection*(__cdecl*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;
 	auto StringHash32 = (uint32_t(__cdecl*)(const char*))0x4519D0;
 
+	struct RefSpec {
+		unsigned int mClassKey;
+		unsigned int mCollectionKey;
+		const Collection* mCollectionPtr;
+	};
+	static_assert(sizeof(RefSpec) == 0xC);
+
 	namespace Gen {
 		class pvehicle : public Instance {
 			struct _LayoutStruct {
 				UMath::Vector4 TENSOR_SCALE;
 				uint32_t MODEL;
-				char* DefaultPresetRide;
-				char* CollectionName;
+				const char* DefaultPresetRide;
+				const char* CollectionName;
 				int engine_upgrades;
 				int transmission_upgrades;
 				int nos_upgrades;
@@ -71,6 +80,41 @@ namespace Attrib {
 				unsigned char HornType;
 				unsigned char TrafficEngType;
 			};
+
+			pvehicle(uint32_t collection, uint32_t msgPort, void* pInterface) {
+				((pvehicle*(__thiscall*)(pvehicle*, uint32_t, uint32_t, void*))0x4E4EA0)(this, collection, msgPort, pInterface);
+			}
+		};
+
+		class frontend : public Instance {
+		public:
+			struct _LayoutStruct {
+				RefSpec cam_angle;
+				RefSpec default_car;
+				const char* CollectionName;
+				float cam_damping;
+				float cam_anim_speed;
+				float cam_fov;
+				float cam_blur;
+				float cam_lookat_x;
+				float cam_lookat_y;
+				float cam_lookat_z;
+				unsigned int region;
+				float cam_orbit_vertical;
+				unsigned int manufacturer;
+				float cam_roll_angle;
+				int cam_periods;
+				int Cost;
+				float cam_orbit_radius;
+				float cam_orbit_horizontal;
+				bool IsCustomizable;
+				unsigned char UnlockedAt;
+				bool cam_user_rotate;
+			};
+
+			frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
+				((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
+			}
 		};
 	}
 };
