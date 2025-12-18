@@ -78,6 +78,11 @@ public:
 	FECarRecord CarTable[200]; // +0
 	FECustomizationRecord Customizations[75]; // +FA0
 	FECareerRecord CareerRecords[25]; // +8728
+	unsigned int SoldHistoryBounty; // +8CA0
+	unsigned short SoldHistoryNumEvadedPursuits; // +8CA4
+	unsigned short SoldHistoryNumBustedPursuits; // +8CA6
+	FEInfractionsData SoldHistoryUnservedInfractions; // +8CA8
+	FEInfractionsData SoldHistoryServedInfractions; // +8CB8
 
 	static inline auto GetCarRecordByHandle = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, uint32_t handle))0x56ECC0;
 	static inline auto GetCustomizationRecordByHandle = (FECustomizationRecord*(__thiscall*)(FEPlayerCarDB*, int8_t handle))0x56F100;
@@ -92,3 +97,4 @@ public:
 
 	static inline auto BuildRideForPlayer = (void(__thiscall*)(FEPlayerCarDB*, uint32_t car, int player, RideInfo* ride))0x5910E0;
 };
+static_assert(sizeof(FEPlayerCarDB) == 0x8CC8);
