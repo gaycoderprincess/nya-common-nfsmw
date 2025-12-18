@@ -1,4 +1,9 @@
 namespace UMath {
+	class Vector2 {
+	public:
+		float x, y;
+	};
+
 #ifdef NYA_MATH_H
 	class Vector3 : public NyaVec3 {
 	public:
@@ -48,5 +53,6 @@ class bVector3 : public UMath::Vector3 {
 };
 #endif
 
+typedef UMath::Vector2 bVector2;
 typedef UMath::Vector4 bVector4;
 typedef UMath::Matrix4 bMatrix4;

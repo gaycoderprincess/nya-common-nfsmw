@@ -80,6 +80,8 @@ typedef uint32_t HSIMTASK;
 #include "types/StringRecord.h"
 #include "types/GrandSceneryCullInfo.h"
 #include "types/eEffect.h"
+#include "types/WCollisionMgr.h"
+#include "types/WRoadNav.h"
 
 class FadeScreen {
 public:
@@ -90,6 +92,9 @@ auto ExecuteRenderData = (void(__cdecl*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
+
+auto Game_AbandonRace = (void(*)())0x60DEB0;
+auto Game_PlayTutorial = (void(*)())0x6124E0;
 
 auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_MotionBlurEnable = *(bool*)0x9017DC;

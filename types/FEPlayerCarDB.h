@@ -88,6 +88,7 @@ public:
 	static inline auto GetCustomizationRecordByHandle = (FECustomizationRecord*(__thiscall*)(FEPlayerCarDB*, int8_t handle))0x56F100;
 	static inline auto GetCareerRecordByHandle = (FECareerRecord*(__thiscall*)(FEPlayerCarDB*, int8_t handle))0x56F120;
 	static inline auto GetNumCareerCars = (int(__thiscall*)(FEPlayerCarDB*))0x590700;
+	static inline auto GetTotalBounty = (int(__thiscall*)(FEPlayerCarDB*))0x590500;
 
 	static inline auto CreateCar = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, uint32_t fromCar, uint32_t filterBits))0x590BD0;
 	static inline auto CreateNewCareerCar = (FECarRecord*(__thiscall*)(FEPlayerCarDB*, uint32_t fromCar))0x599D20;
