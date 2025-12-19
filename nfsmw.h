@@ -88,6 +88,11 @@ public:
 	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
 };
 
+class NISListenerActivity {
+public:
+	static inline auto MessageBusted = (void(__thiscall*)(NISListenerActivity*, int))0x44DC70;
+};
+
 auto ExecuteRenderData = (void(__cdecl*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
