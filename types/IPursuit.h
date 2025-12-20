@@ -37,7 +37,7 @@ public:
 	virtual bool AttemptingToReAquire() = 0;
 	virtual const UMath::Vector3* GetLastKnownLocation() = 0;
 	virtual IRoadBlock* GetRoadBlock() = 0;
-	virtual void* GetNearestCopInRoadblock(float*) = 0;
+	virtual IVehicle* GetNearestCopInRoadblock(float*) = 0;
 	virtual void RequestGroundSupport() = 0;
 	virtual void ClearGroundSupportRequest() = 0;
 	virtual bool IsSupportVehicle(IVehicle*) = 0;
