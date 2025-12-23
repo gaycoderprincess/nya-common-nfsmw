@@ -19,6 +19,22 @@ public:
 	}
 };
 
+class EFadeScreenOff : public Event::Event {
+public:
+
+	static EFadeScreenOff* Create() {
+		return ((EFadeScreenOff*(__thiscall*)(EFadeScreenOff*))0x621E80)((EFadeScreenOff*)::Event::__nw(12));
+	}
+};
+
+class EFadeScreenOn : public Event::Event {
+public:
+
+	static EFadeScreenOn* Create() {
+		return ((EFadeScreenOn*(__thiscall*)(EFadeScreenOn*))0x62C9A0)((EFadeScreenOn*)::Event::__nw(12));
+	}
+};
+
 class EPause : public Event::Event {
 public:
 

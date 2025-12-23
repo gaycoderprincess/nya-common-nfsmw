@@ -112,5 +112,6 @@ auto& UnlockAllThings = *(bool*)0x926124;
 auto& WorldTimeElapsed = *(float*)0x925970;
 
 auto& SkipFE = *(bool*)0x926064;
+auto& SkipFEPlayerCar = *(const char**)0x8F86A8;
 
 #include "nfsmwhooks.h"

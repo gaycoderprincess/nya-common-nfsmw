@@ -4,5 +4,5 @@ public:
 
 	static inline auto& mInstance = *(ITrafficMgr**)0x92C674;
 
-	virtual void FlushAllTraffic(bool) = 0;
+	virtual void FlushAllTraffic(bool release) = 0;
 };

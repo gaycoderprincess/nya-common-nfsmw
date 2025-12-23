@@ -156,6 +156,7 @@ public:
 	}
 
 	static inline auto InitAtPoint = (bool(__thiscall*)(WRoadNav*, const UMath::Vector3* pos, const UMath::Vector3* dir, bool forceCenterLane, float dirWeight))0x7862D0;
+	static inline auto FindPath = (bool(__thiscall*)(WRoadNav*, const UMath::Vector3* goal_position, const UMath::Vector3* goal_direction, char* shortcut_allowed))0x788F30;
 
 	virtual void _dtor() {};
 };

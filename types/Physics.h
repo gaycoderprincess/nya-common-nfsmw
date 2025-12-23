@@ -1,5 +1,16 @@
 namespace Physics {
 	namespace Upgrades {
+		enum Type {
+			PUT_TIRES = 0,
+			PUT_BRAKES = 1,
+			PUT_CHASSIS = 2,
+			PUT_TRANSMISSION = 3,
+			PUT_ENGINE = 4,
+			PUT_INDUCTION = 5,
+			PUT_NOS = 6,
+			PUT_MAX = 7,
+		};
+
 		class Tuning {
 		public:
 			float lowerBound;
@@ -9,20 +20,11 @@ namespace Physics {
 
 		class Package {
 		public:
-			enum Type {
-				PUT_TIRES = 0,
-				PUT_BRAKES = 1,
-				PUT_CHASSIS = 2,
-				PUT_TRANSMISSION = 3,
-				PUT_ENGINE = 4,
-				PUT_INDUCTION = 5,
-				PUT_NOS = 6,
-				PUT_MAX = 7,
-			};
-
 			int Part[PUT_MAX];
 			int Junkman;
 		};
+
+		static inline auto GetMaxLevel = (int(*)(Attrib::Instance*, Physics::Upgrades::Type))0x672E80;
 	}
 
 	namespace Info {
