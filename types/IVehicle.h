@@ -109,7 +109,7 @@ public:
 	virtual bool IsGlareOn(VehicleFX::ID glare) = 0;
 	virtual void GlareOn(VehicleFX::ID glare) = 0;
 	virtual void GlareOff(VehicleFX::ID glare) = 0;
-	virtual bool IsCollidingWithSoftBarrier(VehicleFX::ID glare) = 0;
+	virtual bool IsCollidingWithSoftBarrier() = 0;
 	virtual IVehicleAI* GetAIVehiclePtr() = 0;
 	virtual float GetSlipAngle() = 0;
 	virtual const UMath::Vector3* GetLocalVelocity() = 0;

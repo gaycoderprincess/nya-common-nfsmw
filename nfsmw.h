@@ -111,4 +111,6 @@ auto& DrawLightFlares = *(bool*)0x8F2918;
 auto& UnlockAllThings = *(bool*)0x926124;
 auto& WorldTimeElapsed = *(float*)0x925970;
 
+auto& SkipFE = *(bool*)0x926064;
+
 #include "nfsmwhooks.h"

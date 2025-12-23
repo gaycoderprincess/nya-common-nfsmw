@@ -34,9 +34,9 @@ public:
 	virtual WRoadNav* GetDriveToNav() = 0;
 	virtual bool GetDrivableToDriveToNav() = 0;
 	virtual void ResetDriveToNav(eLaneSelection lane_selection) = 0;
-	virtual void ResetVehicleToRoadNav(WRoadNav*) = 0;
-	virtual void ResetVehicleToRoadNav(short, char, float) = 0;
-	virtual void ResetVehicleToRoadPos(const UMath::Vector3*, const UMath::Vector3*) = 0;
+	virtual void ResetVehicleToRoadNav(WRoadNav* other_nav) = 0;
+	virtual void ResetVehicleToRoadNav(short segInd, char laneInd, float timeStep) = 0;
+	virtual void ResetVehicleToRoadPos(const UMath::Vector3* position, const UMath::Vector3* forwardVector) = 0;
 	virtual float GetPathDistanceRemaining() = 0;
 	virtual AITarget* GetTarget() = 0;
 	virtual bool GetDrivableToTargetPos() = 0;
@@ -61,9 +61,9 @@ public:
 	virtual WRoadNav* GetCurrentRoad() = 0;
 	virtual WRoadNav* GetFutureRoad() = 0;
 	virtual bool IsCurrentGoal(const UCrc32*) = 0;
-	virtual const char* GetGoalName() = 0;
+	virtual UCrc32* GetGoalName() = 0;
 	virtual bool IsCurrentAction(const UCrc32*) = 0;
-	virtual const char* GetActionName() = 0;
+	virtual UCrc32 GetActionName() = 0;
 	virtual float GetSkill() = 0;
 	virtual float GetShortcutSkill() = 0;
 	virtual float GetPercentRaceComplete() = 0;
