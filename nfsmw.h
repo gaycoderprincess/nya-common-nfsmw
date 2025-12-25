@@ -101,6 +101,10 @@ auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technicall
 auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
 
+auto GPS_Engage = (void(*)(const UMath::Vector3*, float))0x42C830;
+auto GPS_Disengage = (void(*)())0x41ACE0;
+auto& gGPSDestination = *(UMath::Vector3*)0x91E0BC;
+
 auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_MotionBlurEnable = *(bool*)0x9017DC;
 auto& g_VisualTreatment = *(bool*)0x901828;
