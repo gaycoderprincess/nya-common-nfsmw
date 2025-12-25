@@ -123,6 +123,68 @@ public:
 	BinStats mStats;
 };
 
+class EventList {
+public:
+	unsigned int fNumEvents;
+	unsigned int fPad[3];
+};
+
+class EventStaticData {
+public:
+	unsigned int fEventID;
+	unsigned int fEventSize;
+	unsigned int fDataOffset;
+	unsigned int fPad;
+};
+
+class GRuntimeInstance : public Attrib::Instance {
+	class ConnectedInstance {
+	public:
+		unsigned int mIndexedKey;
+		GRuntimeInstance* mInstance;
+	};
+
+	unsigned short mFlags;
+	unsigned short mNumConnected;
+	ConnectedInstance* mConnected;
+	GRuntimeInstance* mPrev;
+	GRuntimeInstance* mNext;
+
+	virtual void _vf0();
+};
+static_assert(sizeof(GRuntimeInstance) == 0x28);
+
+class WTrigger {
+public:
+	UMath::Vector4 fMatRow0Width;
+	unsigned int fType:4;
+	unsigned int fShape:4;
+	unsigned int fFlags:24;
+	float fHeight;
+	EventList* fEvents;
+	unsigned short fIterStamp;
+	unsigned short fFingerprint;
+	UMath::Vector4 fMatRow2Length;
+	UMath::Vector4 fPosRadius;
+};
+
+class GIcon;
+class GTrigger : public GRuntimeInstance {
+public:
+	WTrigger mWorldTrigger;
+	UMath::Vector3 mDirection;
+	unsigned int mTriggerEnabled;
+	eastl::vector<ISimable*> mSimObjInside;
+	EventList mEventList;
+	EventStaticData mEventStaticData;
+	unsigned char mTriggerEventData[16];
+	EmitterGroup* mParticleEffect[2];
+	GIcon* mIcon;
+	bool mEnabled;
+	int mActivationReferences;
+};
+static_assert(sizeof(GTrigger) == 0xCC);
+
 class GRaceStatus : public UCOM::Object, IVehicleCache {
 public:
 	enum PlayMode {
@@ -152,6 +214,30 @@ public:
 	int mNumTollbooths;
 	bool mScriptWaitingForLoad;
 	bool mRefreshBinAfterRace;
+	eastl::vector<GTrigger*> mCheckpoints;
+	GTrigger* mNextCheckpoint;
+	float mLapTimes[10][16];
+	float mCheckTimes[10][16][16];
+	float mSegmentLengths[18];
+	float fRaceLength;
+	float fFirstLapLength;
+	float fSubsequentLapLength;
+	bool mCaluclatedAdaptiveGain;
+	float fCatchUpIntegral;
+	float fCatchUpDerivative;
+	float fCatchUpAdaptiveBonus;
+	float fAveragePercentComplete;
+	int nCatchUpSkillEntries;
+	float aCatchUpSkillData[11];
+	int nCatchUpSpreadEntries;
+	float aCatchUpSpreadData[11];
+	int nSpeedTraps;
+	GTrigger* aSpeedTraps[16];
+	bool mVehicleCacheLocked;
+	bool bRaceRouteError;
+	int mTrafficDensity;
+	unsigned int mTrafficPattern;
+	bool mHasBeenWon;
 
 	static inline auto& fObj = *(GRaceStatus**)0x91E000;
 
@@ -161,29 +247,16 @@ public:
 	static inline auto GetRaceTimeRemaining = (float(__thiscall*)(GRaceStatus*))0x5FE090;
 	static inline auto CanUnspawnRoamer = (bool(__thiscall*)(GRaceStatus*, const IVehicle* roamer))0x5E8960;
 };
-//static_assert(sizeof(GRaceStatus) == 0x4558);
+static_assert(sizeof(GRaceStatus) == 0x4558);
+static_assert(offsetof(GRaceStatus, mRaceParms) == 0x1968);
+static_assert(offsetof(GRaceStatus, mCheckpoints) == 0x19A8);
+static_assert(offsetof(GRaceStatus, mCheckpointModel) == 0x1990);
+static_assert(offsetof(GRaceStatus, mNextCheckpoint) == 0x19B8);
 
 class GActivity;
 class GRaceCustom;
 class GRaceSaveInfo;
 class GState;
-
-class GRuntimeInstance : public Attrib::Instance {
-	class ConnectedInstance {
-	public:
-		unsigned int mIndexedKey;
-		GRuntimeInstance* mInstance;
-	};
-
-	unsigned short mFlags;
-	unsigned short mNumConnected;
-	ConnectedInstance* mConnected;
-	GRuntimeInstance* mPrev;
-	GRuntimeInstance* mNext;
-
-	virtual void _vf0();
-};
-static_assert(sizeof(GRuntimeInstance) == 0x28);
 
 class GActivity : public GRuntimeInstance {
 	GState* mCurrentState;

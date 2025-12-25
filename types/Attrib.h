@@ -43,6 +43,7 @@ namespace Attrib {
 		static inline auto GetAttributePointer = (void*(__thiscall*)(Instance*, uint32_t attributeKey, uint32_t index))0x454810;
 		static inline auto GetCollection = (uint32_t(__thiscall*)(Instance*))0x452430;
 	};
+	static_assert(sizeof(Instance) == 0x14);
 
 	class Database {
 	public:

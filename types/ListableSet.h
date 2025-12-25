@@ -61,3 +61,20 @@ namespace UTL {
 		}
 	};
 }
+
+namespace eastl {
+	template<typename T>
+	class vector {
+	public:
+		uint8_t _0[4]; // huh?
+		T* mpBegin;
+		T* mpEnd;
+		T* mpCapacity;
+
+		T operator[](int i) { return mpBegin[i]; }
+
+		auto size() { return mpEnd - mpBegin; }
+		auto empty() { return mpEnd == mpBegin; }
+	};
+	static_assert(sizeof(vector<void*>) == 0x10);
+}

@@ -73,15 +73,5 @@ namespace Sound {
 	};
 }
 
-template<typename T>
-class vector {
-public:
-	T* _M_start;
-	T* _M_finish;
-
-	T operator[](int i) { return _M_start[i]; }
-
-	auto size() { return _M_finish - _M_start; }
-};
-auto& Songs = *(vector<Sound::stSongInfo*>*)0x9123D0;
+auto& Songs = *(eastl::vector<Sound::stSongInfo*>*)0x9123CC;
 auto& g_MaxSongs = *(int*)0x8F42C4;
