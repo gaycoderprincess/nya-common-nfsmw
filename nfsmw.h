@@ -83,6 +83,11 @@ typedef uint32_t HSIMTASK;
 #include "types/WCollisionMgr.h"
 #include "types/WRoadNav.h"
 
+class RaceStarter {
+public:
+	static inline auto StartCareerFreeRoam = (void(*)())0x56C5B0;
+};
+
 class FadeScreen {
 public:
 	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
@@ -98,6 +103,7 @@ auto ExecuteRenderData = (void(__cdecl*)())0x6E2F50;
 auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
 
+auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
 auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
 

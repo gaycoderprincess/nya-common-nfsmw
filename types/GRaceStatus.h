@@ -48,13 +48,20 @@ public:
 	GVault* mParentVault;
 	GVault* mChildVault;
 
-	virtual void _vf0();
+	virtual void GetCheckpointPosition(unsigned int index, UMath::Vector3* pos) = 0;
+	virtual void GetCheckpointDirection(unsigned int index, UMath::Vector3* dir) = 0;
 
 	static inline auto GetRaceType = (int(__thiscall*)(GRaceParameters*))0x5FAA20;
 	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
 	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
 	static inline auto GetIsPursuitRace = (bool(__thiscall*)(GRaceParameters*))0x5FBE70;
 	static inline auto GetEventID = (const char*(__thiscall*)(GRaceParameters*))0x5FBA70;
+	static inline auto ExtractDirection = (const char*(__stdcall*)(Attrib::Instance* collection, UMath::Vector3* dir, float rotate))0x5DCD00;
+	static inline auto GetStartPosition = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAD10;
+	static inline auto GetStartDirection = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FAE00;
+	static inline auto GetFinishPosition = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAF70;
+	static inline auto GetFinishDirection = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FB060;
+	static inline auto GetNumCheckpoints = (int(__thiscall*)(GRaceParameters*))0x5FCA40;
 };
 static_assert(sizeof(GRaceParameters) == 0x14);
 
@@ -267,8 +274,12 @@ class GRaceCustom : public GRaceParameters {
 public:
 	GActivity* mRaceActivity;
 	unsigned int mNumOpponents;
+	bool mReversed;
+	bool mFreedByOwner;
+	int mHeatLevel;
 };
 //static_assert(sizeof(GRaceCustom) == 0x28);
+static_assert(offsetof(GRaceCustom, mReversed) == 0x1C);
 
 class GRaceDatabase {
 public:

@@ -71,7 +71,7 @@ namespace eastl {
 		T* mpEnd;
 		T* mpCapacity;
 
-		T operator[](int i) { return mpBegin[i]; }
+		T& operator[](int i) { return mpBegin[i]; }
 
 		auto size() { return mpEnd - mpBegin; }
 		auto empty() { return mpEnd == mpBegin; }
