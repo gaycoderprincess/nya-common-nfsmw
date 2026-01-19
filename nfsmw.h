@@ -72,6 +72,7 @@ typedef uint32_t HSIMTASK;
 #include "types/Explosion.h"
 #include "types/PresetCar.h"
 #include "types/AICopManager.h"
+#include "types/AITrafficManager.h"
 #include "types/SimSystem.h"
 #include "types/EAXSound.h"
 #include "types/Camera.h"

@@ -78,7 +78,7 @@ public:
 	FECarRecord CarTable[200]; // +0
 	FECustomizationRecord Customizations[75]; // +FA0
 	FECareerRecord CareerRecords[25]; // +8728
-	unsigned int SoldHistoryBounty; // +8CA0
+	int SoldHistoryBounty; // +8CA0
 	unsigned short SoldHistoryNumEvadedPursuits; // +8CA4
 	unsigned short SoldHistoryNumBustedPursuits; // +8CA6
 	FEInfractionsData SoldHistoryUnservedInfractions; // +8CA8
