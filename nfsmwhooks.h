@@ -52,6 +52,12 @@ namespace NyaHooks {
 		}
 	}
 
+	void PlaceD3DHooks(bool includePreHUD = false) {
+		D3DEndSceneHook::Init();
+		D3DResetHook::Init();
+		if (includePreHUD) PreHUDDrawHook::Init();
+	}
+
 	namespace WorldServiceHook {
 		std::vector<void(*)()> aFunctions;
 
@@ -202,9 +208,20 @@ namespace NyaHooks {
 		}
 	}
 
-	void PlaceD3DHooks(bool includePreHUD = false) {
-		D3DEndSceneHook::Init();
-		D3DResetHook::Init();
-		if (includePreHUD) PreHUDDrawHook::Init();
+	namespace SimServiceHook {
+		std::vector<void(*)()> aFunctions;
+
+		auto OrigFunction = (void(*)())nullptr;
+		void HookedFunction() {
+			for (auto& func : aFunctions) {
+				func();
+			}
+			OrigFunction();
+		}
+
+		void Init() {
+			if (OrigFunction) return;
+			OrigFunction = (void(*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x62539B, &HookedFunction);
+		}
 	}
 }

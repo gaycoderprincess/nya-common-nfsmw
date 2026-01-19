@@ -83,6 +83,7 @@ typedef uint32_t HSIMTASK;
 #include "types/eEffect.h"
 #include "types/WCollisionMgr.h"
 #include "types/WRoadNav.h"
+#include "types/Scheduler.h"
 
 class RaceStarter {
 public:
@@ -124,5 +125,7 @@ auto& WorldTimeElapsed = *(float*)0x925970;
 
 auto& SkipFE = *(bool*)0x926064;
 auto& SkipFEPlayerCar = *(const char**)0x8F86A8;
+
+auto& GameWindow = *(HWND*)0x982BF4;
 
 #include "nfsmwhooks.h"

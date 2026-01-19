@@ -52,5 +52,7 @@ static_assert(sizeof(SimSystem) == 0x90);
 namespace Sim {
 	namespace Internal {
 		auto& mSystem = *(SimSystem**)0x9885E0;
+		auto& mRenderFrame = *(float*)0x988DE8;
+		auto& mFrameTime = *(float*)0x988DEC;
 	}
 }
