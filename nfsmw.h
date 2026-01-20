@@ -85,6 +85,11 @@ typedef uint32_t HSIMTASK;
 #include "types/WRoadNav.h"
 #include "types/Scheduler.h"
 
+class BuildRegion {
+public:
+	static inline auto IsPal = (bool(*)())0x64A110;
+};
+
 class RaceStarter {
 public:
 	static inline auto StartCareerFreeRoam = (void(*)())0x56C5B0;
