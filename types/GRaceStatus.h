@@ -15,6 +15,15 @@ public:
 	float mStartTime;
 	float mTotalTime;
 	bool mRunning;
+
+	float GetTime() {
+		if (mRunning) {
+			return (Sim::GetTime() - mStartTime) + mTotalTime;
+		}
+		else {
+			return mTotalTime;
+		}
+	}
 };
 
 class GRaceIndexData {
@@ -62,6 +71,9 @@ public:
 	static inline auto GetFinishPosition = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAF70;
 	static inline auto GetFinishDirection = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FB060;
 	static inline auto GetNumCheckpoints = (int(__thiscall*)(GRaceParameters*))0x5FCA40;
+	static inline auto GetNumOpponents = (int(__thiscall*)(GRaceParameters*))0x5FACD0;
+	static inline auto GetPlayerCarType = (const char*(__thiscall*)(GRaceParameters*))0x5FC5C0;
+	static inline auto GetPlayerCarPerformance = (float(__thiscall*)(GRaceParameters*))0x5FC620;
 };
 static_assert(sizeof(GRaceParameters) == 0x14);
 
@@ -69,7 +81,7 @@ class GRacerInfo {
 public:
 	HSIMABLE mhSimable;
 	GCharacter* mGameCharacter;
-	char* mName;
+	const char* mName;
 	int mIndex;
 	int mRanking;
 	int mAiRanking;

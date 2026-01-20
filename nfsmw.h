@@ -64,6 +64,7 @@ typedef uint32_t HSIMTASK;
 #include "types/IGameState.h"
 #include "types/ISceneryModel.h"
 #include "types/IHud.h"
+#include "types/SimSystem.h"
 #include "types/GRaceStatus.h"
 #include "types/EAX_CarState.h"
 #include "types/SoundAI.h"
@@ -73,7 +74,6 @@ typedef uint32_t HSIMTASK;
 #include "types/PresetCar.h"
 #include "types/AICopManager.h"
 #include "types/AITrafficManager.h"
-#include "types/SimSystem.h"
 #include "types/EAXSound.h"
 #include "types/Camera.h"
 #include "types/eView.h"
@@ -108,6 +108,8 @@ public:
 auto ExecuteRenderData = (void(__cdecl*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(__cdecl*)(const char*, ...))0x573140;
+auto FEHashUpper = (uint32_t(__cdecl*)(const char*))0x5AF1C0;
+auto CalcLanguageHash = (uint32_t(__cdecl*)(const char*, GRaceParameters*))0x56E560;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
 
 auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
