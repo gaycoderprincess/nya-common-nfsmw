@@ -10,6 +10,7 @@ public:
 
 	static inline auto Default = (void(__thiscall*)(FECarRecord*))0x5815B0;
 	static inline auto GetDebugName = (const char*(__thiscall*)(FECarRecord*))0x581BF0;
+	static inline auto GetNameHash = (uint32_t(__thiscall*)(FECarRecord*))0x591160;
 	static inline auto GetType = (uint32_t(__thiscall*)(FECarRecord*))0x5816B0;
 };
 static_assert(sizeof(FECarRecord) == 0x14);

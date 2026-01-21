@@ -138,5 +138,7 @@ public:
 	UserProfile* mUserProfile; // +10
 
 	static inline auto IsFinalEpicChase = (bool(__thiscall*)(cFrontendDatabase*))0x56DC00;
+	static inline auto GetRaceNameHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E010;
+	static inline auto GetRaceIconHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E090;
 };
 auto& FEDatabase = *(cFrontendDatabase**)0x91CF90;
