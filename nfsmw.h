@@ -129,6 +129,7 @@ auto& gGPSDestination = *(UMath::Vector3*)0x91E0BC;
 auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_MotionBlurEnable = *(bool*)0x9017DC;
 auto& g_VisualTreatment = *(bool*)0x901828;
+auto& g_WorldLodLevel = *(int*)0x9017F4;
 
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
