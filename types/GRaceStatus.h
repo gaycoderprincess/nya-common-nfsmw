@@ -310,5 +310,7 @@ public:
 	GRaceSaveInfo* mRaceScoreInfo;
 
 	static inline auto& mObj = *(GRaceDatabase**)0x91E004;
+
+	static inline auto GetRaceFromHash = (GRaceParameters*(__thiscall*)(GRaceDatabase*, uint32_t))0x5FB710;
 };
 static_assert(sizeof(GRaceDatabase) == 0x40);
