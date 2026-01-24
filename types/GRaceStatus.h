@@ -61,6 +61,7 @@ public:
 	virtual void GetCheckpointDirection(unsigned int index, UMath::Vector3* dir) = 0;
 
 	static inline auto GetRaceType = (int(__thiscall*)(GRaceParameters*))0x5FAA20;
+	static inline auto GetChallengeType = (int(__thiscall*)(GRaceParameters*))0x5FA9A0;
 	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
 	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
 	static inline auto GetIsPursuitRace = (bool(__thiscall*)(GRaceParameters*))0x5FBE70;
