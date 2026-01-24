@@ -110,6 +110,11 @@ public:
 	static inline auto IsTuningAvailable = (bool(*)())0x510900;
 };
 
+class ICEManager {
+public:
+	static inline auto SetGenericCameraToPlay = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0;
+};
+
 auto ExecuteRenderData = (void(*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(*)(const char*, ...))0x573140;
