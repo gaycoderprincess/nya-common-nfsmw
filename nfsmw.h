@@ -121,6 +121,7 @@ auto FEngHashString = (uint32_t(*)(const char*, ...))0x573140;
 auto FEHashUpper = (uint32_t(*)(const char*))0x5AF1C0;
 auto CalcLanguageHash = (uint32_t(*)(const char*, GRaceParameters*))0x56E560;
 auto bStringHashUpper = (uint32_t(*)(const char*))0x460BC0;
+auto bInitTicker = (void(*)())0x45CDD0;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
 
 auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
