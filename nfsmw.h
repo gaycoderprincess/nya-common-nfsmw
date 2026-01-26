@@ -145,6 +145,7 @@ auto& WorldTimeElapsed = *(float*)0x925970;
 
 auto& SkipFE = *(bool*)0x926064;
 auto& SkipFEPlayerCar = *(const char**)0x8F86A8;
+auto& SkipMovies = *(bool*)0x926144;
 
 auto& GameWindow = *(HWND*)0x982BF4;
 

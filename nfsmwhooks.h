@@ -2,10 +2,14 @@
 
 namespace NyaHooks {
 	namespace D3DEndSceneHook {
+		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aFunctions;
 
 		auto OrigFunction = (void(*)(void*))nullptr;
 		void HookedFunction(void* a1) {
+			for (auto& func : aPreFunctions) {
+				func();
+			}
 			OrigFunction(a1);
 			for (auto& func : aFunctions) {
 				func();
