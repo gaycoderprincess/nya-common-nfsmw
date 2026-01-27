@@ -150,10 +150,14 @@ namespace NyaHooks {
 	}
 
 	namespace LateInitHook {		
+		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aFunctions;
 
 		auto OrigFunction = (void(*)(int, char**))nullptr;
 		void HookedFunction(int a1, char** a2) {
+			for (auto& func : aPreFunctions) {
+				func();
+			}
 			OrigFunction(a1, a2);
 			for (auto& func : aFunctions) {
 				func();
