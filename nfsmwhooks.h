@@ -217,14 +217,18 @@ namespace NyaHooks {
 	}
 
 	namespace SimServiceHook {
-		std::vector<void(*)()> aFunctions;
+		std::vector<void(*)()> aPreFunctions;
+		std::vector<void(*)()> aPostFunctions;
 
 		auto OrigFunction = (void(*)())nullptr;
 		void HookedFunction() {
-			for (auto& func : aFunctions) {
+			for (auto& func : aPreFunctions) {
 				func();
 			}
 			OrigFunction();
+			for (auto& func : aPostFunctions) {
+				func();
+			}
 		}
 
 		void Init() {
