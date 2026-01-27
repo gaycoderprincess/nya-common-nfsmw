@@ -128,8 +128,18 @@ auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
 auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
 
-auto JLZCompress = (uint32_t(*)(uint8_t* pSrc, uint32_t Size, uint8_t* pDest))0x65AFF0;
+auto LZCompress = (uint32_t(*)(uint8_t *pSrc, uint32_t sourceSize, uint8_t *pDst))0x65B350;
 auto LZDecompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x650350;
+auto JLZCompress = (uint32_t(*)(uint8_t *pSrc, uint32_t sourceSize, uint8_t *pDst))0x65AFF0;
+auto JLZDecompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x64DB40;
+auto HUFFCompress = (uint32_t(*)(uint8_t *pSrc, uint32_t sourceSize, uint8_t *pDst))0x650120;
+auto HUFF_decompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x64DCA0;
+uint32_t HUFFDecompress(uint8_t* pSrc, uint8_t* pDest) {
+	auto pSrc32 = (uint32_t*)pSrc;
+	if (*pSrc32 != 0x46465548 || pSrc[4] != 1) return 0;
+	HUFF_decompress(pSrc + 0x10, pDest);
+	return pSrc32[2];
+}
 
 auto GPS_Engage = (void(*)(const UMath::Vector3*, float))0x42C830;
 auto GPS_Disengage = (void(*)())0x41ACE0;
