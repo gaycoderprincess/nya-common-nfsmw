@@ -128,6 +128,9 @@ auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
 auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
 
+auto JLZCompress = (uint32_t(*)(uint8_t* pSrc, uint32_t Size, uint8_t* pDest))0x65AFF0;
+auto LZDecompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x650350;
+
 auto GPS_Engage = (void(*)(const UMath::Vector3*, float))0x42C830;
 auto GPS_Disengage = (void(*)())0x41ACE0;
 auto& gGPSDestination = *(UMath::Vector3*)0x91E0BC;
