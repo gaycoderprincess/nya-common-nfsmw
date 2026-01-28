@@ -145,6 +145,7 @@ uint32_t HUFFDecompress(uint8_t* pSrc, uint8_t* pDest) {
 auto GPS_Engage = (void(*)(const UMath::Vector3*, float))0x42C830;
 auto GPS_Disengage = (void(*)())0x41ACE0;
 auto& gGPSDestination = *(UMath::Vector3*)0x91E0BC;
+auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
 
 auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_MotionBlurEnable = *(bool*)0x9017DC;
@@ -153,6 +154,7 @@ auto& g_WorldLodLevel = *(int*)0x9017F4;
 
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
+auto& DrawSmear = *(bool*)0x8F9218;
 auto& DrawLightFlares = *(bool*)0x8F2918;
 auto& UnlockAllThings = *(bool*)0x926124;
 auto& WorldTimeElapsed = *(float*)0x925970;

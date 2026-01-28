@@ -86,7 +86,7 @@ public:
 	bool bHidden;
 	bool bMovedLastUpdate;
 
-	virtual void _vf0() {}
+	virtual void* _dtor(bool) = 0;
 };
 
 class FEStatWidget : public FEWidget {
@@ -109,6 +109,7 @@ public:
 		((FEToggleWidget*(__thiscall*)(FEToggleWidget*, bool))0x589300)(this, state);
 	}
 
+	virtual void* _dtor(bool a1) { return ((FEToggleWidget*(__thiscall*)(FEToggleWidget*, bool))0x528640)(this, a1); }
 	virtual void Act(const char*, uint32_t) = 0;
 	virtual void CheckMouse(const char* a1, float a2, float a3) { ((void(__thiscall*)(FEToggleWidget*, const char*, float, float))0x574540)(this, a1, a2, a3); }
 	virtual void Draw() = 0;
