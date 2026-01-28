@@ -2,6 +2,8 @@ class FEWideString {
 public:
 	wchar_t* mpsString;
 	unsigned long mulBufferLength;
+
+	static inline auto Write = (int(__thiscall*)(FEWideString*, const char*))0x57E8C0;
 };
 static_assert(sizeof(FEWideString) == 0x8);
 
