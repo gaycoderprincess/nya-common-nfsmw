@@ -151,6 +151,8 @@ auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_MotionBlurEnable = *(bool*)0x9017DC;
 auto& g_VisualTreatment = *(bool*)0x901828;
 auto& g_WorldLodLevel = *(int*)0x9017F4;
+auto& g_RacingResolution = *(int*)0x90181C;
+auto& FirstTime = *(bool*)0x901820;
 
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
@@ -164,5 +166,7 @@ auto& SkipFEPlayerCar = *(const char**)0x8F86A8;
 auto& SkipMovies = *(bool*)0x926144;
 
 auto& GameWindow = *(HWND*)0x982BF4;
+auto& GameD3D = *(IDirect3D9**)0x982BD8;
+auto& GameD3DDevice = *(IDirect3DDevice9**)0x982BDC;
 
 #include "nfsmwhooks.h"

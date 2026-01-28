@@ -131,3 +131,17 @@ class UIWidgetMenu {
 public:
 	static inline auto AddToggleOption = (int(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))0x588570;
 };
+
+class UIOptionsScreen {
+public:
+	struct Options {
+		uint8_t _0[0x2C];
+		int g_MotionBlurEnable; // +2C
+		uint8_t _30[0x3C];
+		int g_RacingResolution; // +6C
+	};
+
+	static inline auto& OptionsToEdit = *(Options***)0x91CA20;
+};
+
+auto FEPrintf = (int(*)(FEString*, const char*, ...))0x515D70;
