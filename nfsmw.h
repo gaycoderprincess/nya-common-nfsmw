@@ -84,6 +84,7 @@ typedef uint32_t HSIMTASK;
 #include "types/WCollisionMgr.h"
 #include "types/WRoadNav.h"
 #include "types/Scheduler.h"
+#include "types/FEObject.h"
 
 class BuildRegion {
 public:
