@@ -170,6 +170,23 @@ namespace NyaHooks {
 		}
 	}
 
+	namespace LateInitHookAlternate {
+		std::vector<void(*)()> aFunctions;
+
+		auto OrigFunction = (void(*)(int))nullptr;
+		void HookedFunction(int a1) {
+			OrigFunction(a1);
+			for (auto& func : aFunctions) {
+				func();
+			}
+		}
+
+		void Init() {
+			if (OrigFunction) return;
+			OrigFunction = (void(*)(int))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x66617F, &HookedFunction);
+		}
+	}
+
 	namespace RenderWorldHook {		
 		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aPostFunctions;
