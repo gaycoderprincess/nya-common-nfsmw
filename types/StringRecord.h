@@ -1,6 +1,6 @@
 struct StringRecord {
 	uint32_t Hash;
-	char* PackedString;
+	const char* PackedString;
 };
 
 auto& NumStringRecords = *(uint32_t*)0x91CF78;

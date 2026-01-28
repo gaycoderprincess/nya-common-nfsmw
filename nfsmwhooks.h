@@ -1,6 +1,103 @@
 #include <vector>
 
 namespace NyaHooks {
+	namespace OptionsMenuHook {
+		std::vector<StringRecord> aNewStringRecords;
+
+		class OMCustom : public IconOption {
+		public:
+			uint32_t optionId;
+
+			OMCustom(uint32_t iconHash, uint32_t nameHash, int a3) : IconOption(iconHash, nameHash, a3) {}
+
+			void React(const char* a1, uint32_t a2, FEObject* a3, uint32_t a4, uint32_t a5) override {
+				if (a2 != 0xC407210) return;
+				FEDatabase->CurrentUserProfiles[0]->TheOptionsSettings.CurrentCategory = (eOptionsCategory)optionId;
+			}
+		};
+
+		class CustomOptionData {
+		public:
+			uint32_t iconHash;
+			uint32_t nameHash;
+			uint32_t optionId;
+
+			OMCustom* CreateOption() {
+				auto option = new OMCustom(iconHash, nameHash, 0);
+				option->optionId = optionId;
+				return option;
+			}
+		};
+		std::vector<CustomOptionData> aMenuOptions;
+
+		int AddInitFunc(void* initFunc) {
+			auto options = (uintptr_t*)0x545DFC;
+			for (int i = 0; i < 13; i++) {
+				//if (options[i] == 0x545DEF || options[i] == 0xCCCCCCCC) {
+				if (options[i] == 0xCCCCCCCC) {
+					// change menu to init
+					auto data = new uint8_t[0x12];
+					memcpy(data, (void*)0x545DE8, 0x12);
+					NyaHookLib::PatchRelative(NyaHookLib::CALL, (uintptr_t)(data + 2), initFunc);
+					NyaHookLib::PatchRelative(NyaHookLib::CALL, (uintptr_t)(data + 0xB), 0x5A5EA0);
+					NyaHookLib::Patch((uintptr_t)&options[i], data);
+					NyaHookLib::Patch<uint8_t>(0x545D75 + 2, i); // switch case max
+
+					// change fng to enter
+					NyaHookLib::Patch(0x5456FC + (4 * i), 0x545642);
+					NyaHookLib::Patch<uint8_t>(0x5455F1 + 2, i); // switch case max
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		auto OptionsMenu_orig = (void(__thiscall*)(IconScrollerMenu*, IconOption*))nullptr;
+		void __thiscall OptionsMenuHooked(IconScrollerMenu* pThis, IconOption* widget) {
+			for (auto& option : aMenuOptions) {
+				IconScrollerMenu::AddOption(pThis, option.CreateOption());
+			}
+			OptionsMenu_orig(pThis, widget);
+		}
+
+		// just using FEPrintf or somesuch to create a literal string seems to offset the text labels a bit, this seems to be the only way to make them look correct
+		auto SearchForString_orig = (const char*(__fastcall*)(void*, uint32_t))nullptr;
+		const char* __fastcall SearchForStringHooked(void* a1, uint32_t hash) {
+			auto str = SearchForString_orig(a1, hash);
+			if (!str) {
+				for (auto& record : aNewStringRecords) {
+					if (hash == record.Hash) return record.PackedString;
+				}
+			}
+			return str;
+		}
+
+		void Init() {
+			static bool bOnce = false;
+			if (bOnce) return;
+			bOnce = true;
+
+			OptionsMenu_orig = (void(__thiscall*)(IconScrollerMenu*, IconOption*))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x528F8C, &OptionsMenuHooked);
+			NyaHookLib::Patch<uint16_t>(0x51041A, 0x01B0); // default to options not changed to disable the exit prompt
+
+			SearchForString_orig = (const char*(__fastcall*)(void*, uint32_t))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x57E924, &SearchForStringHooked);
+		}
+
+		bool AddMenuOption(void* initFunc, uint32_t iconHash, uint32_t nameHash) {
+			auto id = AddInitFunc(initFunc);
+			if (id < 0) return false;
+
+			aMenuOptions.push_back({iconHash, nameHash, id});
+			Init();
+			return true;
+		}
+
+		void AddStringRecord(uint32_t hash, const char* str) {
+			aNewStringRecords.push_back({hash, str});
+			Init();
+		}
+	}
+
 	namespace D3DEndSceneHook {
 		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aFunctions;
