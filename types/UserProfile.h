@@ -146,14 +146,14 @@ public:
 	UserProfile* CurrentUserProfiles[2];
 	//GRace::Type RaceMode;
 	//RaceSettings TheQuickRaceSettings[11];
-	//char * m_pCarStableBackup;
-	//char * m_pDBBackup;
+	//char* m_pCarStableBackup;
+	//char* m_pDBBackup;
 	//unsigned int FEGameMode;
 	//eLoadSaveGame LoadSaveGame;
 	//FEKeyboardSettings mFEKeyboardSettings;
 	//int iCurPauseSubOptionType;
 	//int iCurPauseOptionType;
-	//FECustomizationRecord * SplitScreenCustomization;
+	//FECustomizationRecord* SplitScreenCustomization;
 	//char SplitScreenCarType[256];
 	//cFinishedRaceStats FinishedRaceStats;
 	//ePostRaceOptions PostRaceOptionChosen;
