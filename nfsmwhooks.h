@@ -2,11 +2,9 @@
 
 namespace NyaHooks {
 	namespace OptionsMenuHook {
-		std::vector<StringRecord> aNewStringRecords;
-
 		class OMCustom : public IconOption {
 		public:
-			uint32_t optionId;
+			int optionId;
 
 			OMCustom(uint32_t iconHash, uint32_t nameHash, int a3) : IconOption(iconHash, nameHash, a3) {}
 
@@ -20,7 +18,7 @@ namespace NyaHooks {
 		public:
 			uint32_t iconHash;
 			uint32_t nameHash;
-			uint32_t optionId;
+			int optionId;
 
 			OMCustom* CreateOption() {
 				auto option = new OMCustom(iconHash, nameHash, 0);
@@ -60,7 +58,17 @@ namespace NyaHooks {
 			OptionsMenu_orig(pThis, widget);
 		}
 
+		void InitMenuHook() {
+			static bool bOnce = false;
+			if (bOnce) return;
+			bOnce = true;
+
+			OptionsMenu_orig = (void(__thiscall*)(IconScrollerMenu*, IconOption*))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x528F8C, &OptionsMenuHooked);
+			NyaHookLib::Patch<uint16_t>(0x51041A, 0x01B0); // default to options not changed to disable the exit prompt
+		}
+
 		// just using FEPrintf or somesuch to create a literal string seems to offset the text labels a bit, this seems to be the only way to make them look correct
+		std::vector<StringRecord> aNewStringRecords;
 		auto SearchForString_orig = (const char*(__fastcall*)(void*, uint32_t))nullptr;
 		const char* __fastcall SearchForStringHooked(void* a1, uint32_t hash) {
 			auto str = SearchForString_orig(a1, hash);
@@ -72,29 +80,110 @@ namespace NyaHooks {
 			return str;
 		}
 
-		void Init() {
+		void InitStringHook() {
 			static bool bOnce = false;
 			if (bOnce) return;
 			bOnce = true;
 
-			OptionsMenu_orig = (void(__thiscall*)(IconScrollerMenu*, IconOption*))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x528F8C, &OptionsMenuHooked);
-			NyaHookLib::Patch<uint16_t>(0x51041A, 0x01B0); // default to options not changed to disable the exit prompt
-
 			SearchForString_orig = (const char*(__fastcall*)(void*, uint32_t))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x57E924, &SearchForStringHooked);
 		}
 
-		bool AddMenuOption(void* initFunc, uint32_t iconHash, uint32_t nameHash) {
+		std::vector<void(*)(UIWidgetMenu*)> aNewAudioOptions;
+		auto AudioOptions1_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))nullptr;
+		auto AudioOptions2_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))nullptr;
+		void __thiscall AudioOptionsHooked1(UIWidgetMenu* pThis, FEToggleWidget* widget, bool a3) {
+			AudioOptions1_orig(pThis, widget, a3);
+			if (TheGameFlowManager.CurrentGameFlowState == GAMEFLOW_STATE_IN_FRONTEND) return;
+			for (auto& func : aNewAudioOptions) {
+				func(pThis);
+			}
+		}
+		void __thiscall AudioOptionsHooked2(UIWidgetMenu* pThis, FEToggleWidget* widget, bool a3) {
+			AudioOptions2_orig(pThis, widget, a3);
+			for (auto& func : aNewAudioOptions) {
+				func(pThis);
+			}
+		}
+
+		std::vector<void(*)(UIWidgetMenu*)> aNewVideoOptions;
+		auto VideoOptions_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))nullptr;
+		void __thiscall VideoOptionsHooked(UIWidgetMenu* pThis, FEToggleWidget* widget, bool a3) {
+			VideoOptions_orig(pThis, widget, a3);
+			for (auto& func : aNewVideoOptions) {
+				func(pThis);
+			}
+		}
+
+		std::vector<void(*)(UIWidgetMenu*)> aNewGameplayOptions;
+		auto GameplayOptions_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))nullptr;
+		void __thiscall GameplayOptionsHooked(UIWidgetMenu* pThis, FEToggleWidget* widget, bool a3) {
+			GameplayOptions_orig(pThis, widget, a3);
+			for (auto& func : aNewGameplayOptions) {
+				func(pThis);
+			}
+		}
+
+		void InitAudioOptionsHook() {
+			static bool bOnce = false;
+			if (bOnce) return;
+			bOnce = true;
+
+			AudioOptions1_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x52954D, &AudioOptionsHooked1);
+			AudioOptions2_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x529593, &AudioOptionsHooked2);
+		}
+
+		void InitVideoOptionsHook() {
+			static bool bOnce = false;
+			if (bOnce) return;
+			bOnce = true;
+
+			VideoOptions_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x529BC7, &VideoOptionsHooked);
+		}
+
+		void InitGameplayOptionsHook() {
+			static bool bOnce = false;
+			if (bOnce) return;
+			bOnce = true;
+
+			GameplayOptions_orig = (void(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x529E8D, &GameplayOptionsHooked);
+		}
+
+		bool AddNewMenu(void* initFunc, uint32_t iconHash, uint32_t nameHash) {
 			auto id = AddInitFunc(initFunc);
 			if (id < 0) return false;
 
 			aMenuOptions.push_back({iconHash, nameHash, id});
-			Init();
+			InitMenuHook();
 			return true;
+		}
+
+		void AddMenuOption(eOptionsCategory category, void(*createFunction)(UIWidgetMenu*)) {
+			switch (category) {
+				case OC_AUDIO:
+					aNewAudioOptions.push_back(createFunction);
+					InitAudioOptionsHook();
+					break;
+				case OC_PC_ADV_DISPLAY:
+					aNewVideoOptions.push_back(createFunction);
+					InitVideoOptionsHook();
+					break;
+				case OC_GAMEPLAY:
+					aNewGameplayOptions.push_back(createFunction);
+					InitGameplayOptionsHook();
+					break;
+				// not implemented
+				case OC_VIDEO:
+				case OC_PLAYER:
+				case OC_CONTROLS:
+				case OC_ONLINE:
+				default:
+					break;
+			}
 		}
 
 		void AddStringRecord(uint32_t hash, const char* str) {
 			aNewStringRecords.push_back({hash, str});
-			Init();
+			InitStringHook();
 		}
 	}
 
