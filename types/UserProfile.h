@@ -131,15 +131,38 @@ public:
 	FEPlayerCarDB PlayersCarStable; // +414
 };
 static_assert(sizeof(UserProfile) == 0x414+sizeof(FEPlayerCarDB));
+static_assert(offsetof(UserProfile, TheOptionsSettings.CurrentCategory) == 0x24);
 
 class cFrontendDatabase {
 public:
-	uint8_t _0[0x10];
-	UserProfile* mUserProfile; // +10
+	unsigned char iNumPlayers;
+	bool bComingFromBoot;
+	bool bSavedProfileForMP;
+	bool bProfileLoaded;
+	bool bIsOptionsDirty;
+	bool bAutoSaveOverwriteConfirmed;
+	unsigned int iDefaultStableHash;
+	signed char PlayerJoyports[2];
+	UserProfile* CurrentUserProfiles[2];
+	//GRace::Type RaceMode;
+	//RaceSettings TheQuickRaceSettings[11];
+	//char * m_pCarStableBackup;
+	//char * m_pDBBackup;
+	//unsigned int FEGameMode;
+	//eLoadSaveGame LoadSaveGame;
+	//FEKeyboardSettings mFEKeyboardSettings;
+	//int iCurPauseSubOptionType;
+	//int iCurPauseOptionType;
+	//FECustomizationRecord * SplitScreenCustomization;
+	//char SplitScreenCarType[256];
+	//cFinishedRaceStats FinishedRaceStats;
+	//ePostRaceOptions PostRaceOptionChosen;
 
 	static inline auto IsFinalEpicChase = (bool(__thiscall*)(cFrontendDatabase*))0x56DC00;
 	static inline auto GetRaceNameHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E010;
 	static inline auto GetRaceIconHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E090;
 	static inline auto GetMilestoneIconHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int, bool))0x56DEA0;
 };
+static_assert(offsetof(cFrontendDatabase, CurrentUserProfiles[0]) == 0x10);
+
 auto& FEDatabase = *(cFrontendDatabase**)0x91CF90;

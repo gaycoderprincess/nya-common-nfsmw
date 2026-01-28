@@ -10,6 +10,8 @@ typedef uint32_t HMODEL;
 typedef uint32_t HSIMPROFILE;
 typedef uint32_t HSIMTASK;
 
+auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
+
 #include "types/bNode.h"
 #include "types/UMath.h"
 #include "types/UCOM.h"
@@ -120,7 +122,6 @@ auto ExecuteRenderData = (void(*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(*)(const char*, ...))0x573140;
 auto FEHashUpper = (uint32_t(*)(const char*))0x5AF1C0;
-auto CalcLanguageHash = (uint32_t(*)(const char*, GRaceParameters*))0x56E560;
 auto bStringHashUpper = (uint32_t(*)(const char*))0x460BC0;
 auto bInitTicker = (void(*)(float))0x45CDD0;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
@@ -145,7 +146,6 @@ uint32_t HUFFDecompress(uint8_t* pSrc, uint8_t* pDest) {
 auto GPS_Engage = (void(*)(const UMath::Vector3*, float))0x42C830;
 auto GPS_Disengage = (void(*)())0x41ACE0;
 auto& gGPSDestination = *(UMath::Vector3*)0x91E0BC;
-auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
 
 auto& gMoviePlayer = *(void**)0x91CB10;
 auto& g_MotionBlurEnable = *(bool*)0x9017DC;

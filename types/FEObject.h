@@ -1,3 +1,10 @@
+class FEScript;
+class FERenderObject;
+class FEImage;
+class FEngTextInputObject;
+class FEPackage;
+class FESliderWidget;
+
 class FEWideString {
 public:
 	wchar_t* mpsString;
@@ -6,9 +13,6 @@ public:
 	static inline auto Write = (int(__thiscall*)(FEWideString*, const char*))0x57E8C0;
 };
 static_assert(sizeof(FEWideString) == 0x8);
-
-class FEScript;
-class FERenderObject;
 
 enum FEObjType {
 	FE_None = 0,
@@ -77,7 +81,31 @@ public:
 };
 static_assert(sizeof(FEString) == 0x78);
 
-class FEImage;
+class FEScrollBar {
+public:
+	uint8_t _0[0x5C];
+	//bool bVertical;
+	//bool bResizeHandle;
+	//bool bHandleGrabbed;
+	//bool bArrowsOnly;
+	//bool bVisible;
+	//bVector2 vGrabbedPos;
+	//bVector2 vCurPos;
+	//bVector2 vGrabOffset;
+	//bVector2 vBackingPos;
+	//bVector2 vBackingSize;
+	//bVector2 vHandleMinSize;
+	//float fSegSize;
+	//Timer ScrollTime;
+	//FEObject* pBacking;
+	//FEObject* pHandle;
+	//FEObject* pFirstArrow;
+	//FEObject* pSecondArrow;
+	//FEObject* pFirstBackingEnd;
+	//FEObject* pSecondBackingEnd;
+};
+static_assert(sizeof(FEScrollBar) == 0x5C);
+
 class FEWidget : public bTNode<FEWidget> {
 public:
 	bVector2 vTopLeft;
@@ -102,6 +130,10 @@ public:
 
 class FEToggleWidget : public FEStatWidget {
 public:
+	void* operator new(size_t size) {
+		return GAME_malloc(size);
+	}
+
 	FEImage* pLeftImage;
 	FEImage* pRightImage;
 	unsigned int EnableScript;
@@ -129,21 +161,138 @@ public:
 };
 static_assert(sizeof(FEToggleWidget) == 0x5C);
 
-class UIWidgetMenu {
+class ScreenConstructorData {
 public:
-	static inline auto AddToggleOption = (int(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))0x588570;
+	const char* PackageFilename;
+	FEPackage* pPackage;
+	int Arg;
 };
 
-class UIOptionsScreen {
+class MenuScreen {
 public:
-	struct Options {
+	bool mPlaySound;
+	unsigned long mDirectionForNextSound;
+	bool bEnableEAMessenger;
+	const char* PackageFilename;
+	ScreenConstructorData ConstructData;
+	bool IsGarageScreen;
+	FEngTextInputObject* TextInputObject;
+	unsigned char mStartCapturingFromKeyboard;
+
+	virtual void* _dtor(bool a1) = 0;
+};
+static_assert(sizeof(MenuScreen) == 0x2C);
+
+class UIWidgetMenu : public MenuScreen {
+public:
+	bTList<FEWidget> Options;
+	FEWidget* pCurrentOption;
+	FEWidget* pViewTop;
+	FEObject* pTitleMaster;
+	FEObject* pDataMaster;
+	FEObject* pPrevButtonObj;
+	FEString* pDoneText;
+	FEObject* pDone;
+	FEObject* pCursor;
+	FEScrollBar ScrollBar;
+	const char* pTitleName;
+	const char* pDataName;
+	const char* pDataImageName;
+	const char* pBackingName;
+	const char* pLeftArrowName;
+	const char* pRightArrowName;
+	const char* pSliderName;
+	bVector2 vWidgetStartPos;
+	bVector2 vLastWidgetPos;
+	bVector2 vWidgetSize;
+	bVector2 vMaxTitleSize;
+	bVector2 vMaxDataSize;
+	bVector2 vDataPos;
+	bVector2 vWidgetSpacing;
+	unsigned int iIndexToAdd;
+	unsigned int iLastSelectedIndex;
+	unsigned int iMaxWidgetsOnScreen;
+	unsigned int iPrevButtonMessage;
+	unsigned int iPrevParam1;
+	unsigned int iPrevParam2;
+	bool bScrollWrapped;
+	bool bCurrentOptionSet;
+	bool bHasScrollBar;
+	bool bViewNeedsSync;
+	bool bAllowScroll;
+	uint8_t _121[0x3];
+
+	static inline auto AddToggleOption = (int(__thiscall*)(UIWidgetMenu*, FEToggleWidget*, bool))0x588570;
+};
+static_assert(sizeof(UIWidgetMenu) == 0x124);
+static_assert(offsetof(UIWidgetMenu, ScrollBar) == 0x54);
+static_assert(offsetof(UIWidgetMenu, pSliderName) == 0xC8);
+static_assert(offsetof(UIWidgetMenu, bScrollWrapped) == 0x11C);
+
+class IconOption : public bTNode<IconOption> {
+public:
+	void* operator new(size_t size) {
+		return GAME_malloc(size);
+	}
+
+	unsigned int Item;
+	FEObject* FEngObject;
+	float XPos;
+	float YPos;
+	unsigned int OriginalColor;
+	bool IsGreyOut;
+	bool IsFlashable;
+	bool Locked;
+	float OrigWidth;
+	float OrigHeight;
+	unsigned int NameHash;
+	unsigned int DescHash;
+	float fScaleToPcnt;
+	float fScaleStartSecs;
+	float fScaleDurSecs;
+	float fScaleAtStart;
+	bool bAnimComplete;
+	bool bReactImmediately;
+	bool bIsTutorialAvailable;
+	const char* pTutorialMovieName;
+
+	IconOption(uint32_t iconHash, uint32_t nameHash, int a3) {
+		((IconOption*(__thiscall*)(IconOption*, uint32_t, uint32_t, int))0x586FA0)(this, iconHash, nameHash, a3);
+	}
+
+	virtual void* _dtor(bool a1) { return ((IconOption*(__thiscall*)(IconOption*, bool))0x51A500)(this, a1); }
+	virtual void React(const char* a1, uint32_t a2, FEObject* a3, uint32_t a4, uint32_t a5) = 0;
+};
+static_assert(sizeof(IconOption) == 0x4C);
+
+class IconScrollerMenu {
+public:
+	static inline auto AddOption = (int(__thiscall*)(IconScrollerMenu*, IconOption*))0x573960;
+};
+
+class UIOptionsScreen : public UIWidgetMenu {
+public:
+	struct GraphicsOptions {
 		uint8_t _0[0x2C];
 		int g_MotionBlurEnable; // +2C
 		uint8_t _30[0x3C];
 		int g_RacingResolution; // +6C
 	};
 
-	static inline auto& OptionsToEdit = *(Options***)0x91CA20;
+	bool mCalledFromPauseMenu;
+	bool NeedsColorCal;
+	bool mInitialAutoSaveValue;
+	FEToggleWidget* speakeroption;
+	FESliderWidget* volumeoption;
+	AudioSettings* OriginalAudioSettings;
+	VideoSettings* OriginalVideoSettings;
+	GameplaySettings* OriginalGameplaySettings;
+	PlayerSettings* OriginalPlayerSettings;
+
+	static inline auto& OptionsToEdit = *(GraphicsOptions***)0x91CA20;
 };
+//static_assert(sizeof(UIOptionsScreen) == 0x158);
+static_assert(offsetof(UIOptionsScreen, mCalledFromPauseMenu) == 0x124);
 
 auto FEPrintf = (int(*)(FEString*, const char*, ...))0x515D70;
+auto FEngSetLanguageHash = (void(*)(const char*, uint32_t, uint32_t))0x525220;
