@@ -296,3 +296,7 @@ static_assert(offsetof(UIOptionsScreen, mCalledFromPauseMenu) == 0x124);
 
 auto FEPrintf = (int(*)(FEString*, const char*, ...))0x515D70;
 auto FEngSetLanguageHash = (void(*)(const char*, uint32_t, uint32_t))0x525220;
+
+class UIQRChallengeSeries;
+class UIQRMainMenu;
+auto CreateQRChallengeSeries = (UIQRChallengeSeries*(*)(ScreenConstructorData*))0x570CC0;

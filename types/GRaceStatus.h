@@ -65,6 +65,8 @@ public:
 	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
 	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
 	static inline auto GetIsPursuitRace = (bool(__thiscall*)(GRaceParameters*))0x5FBE70;
+	static inline auto GetIsDDayRace = (bool(__thiscall*)(GRaceParameters*))0x5FBD20;
+	static inline auto GetIsBossRace = (bool(__thiscall*)(GRaceParameters*))0x5FBD90;
 	static inline auto GetEventID = (const char*(__thiscall*)(GRaceParameters*))0x5FBA70;
 	static inline auto ExtractDirection = (const char*(__stdcall*)(Attrib::Instance* collection, UMath::Vector3* dir, float rotate))0x5DCD00;
 	static inline auto GetStartPosition = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAD10;
