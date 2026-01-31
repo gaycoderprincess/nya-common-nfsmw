@@ -50,6 +50,24 @@ public:
 };
 static_assert(sizeof(GRaceIndexData) == 0x30);
 
+namespace GRace {
+	enum Type {
+		kRaceType_P2P = 0,
+		kRaceType_Circuit = 1,
+		kRaceType_Drag = 2,
+		kRaceType_Knockout = 3,
+		kRaceType_Tollbooth = 4,
+		kRaceType_SpeedTrap = 5,
+		kRaceType_Checkpoint = 6,
+		kRaceType_CashGrab = 7,
+		kRaceType_Challenge = 8,
+		kRaceType_JumpToSpeedTrap = 9,
+		kRaceType_JumpToMilestone = 10,
+		kRaceType_NumTypes = 11,
+		kRaceType_None = -1,
+	};
+}
+
 class GRaceParameters {
 public:
 	GRaceIndexData* mIndex;
@@ -60,7 +78,7 @@ public:
 	virtual void GetCheckpointPosition(unsigned int index, UMath::Vector3* pos) = 0;
 	virtual void GetCheckpointDirection(unsigned int index, UMath::Vector3* dir) = 0;
 
-	static inline auto GetRaceType = (int(__thiscall*)(GRaceParameters*))0x5FAA20;
+	static inline auto GetRaceType = (GRace::Type(__thiscall*)(GRaceParameters*))0x5FAA20;
 	static inline auto GetChallengeType = (int(__thiscall*)(GRaceParameters*))0x5FA9A0;
 	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
 	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
@@ -314,6 +332,7 @@ public:
 
 	static inline auto& mObj = *(GRaceDatabase**)0x91E004;
 
+	static inline auto GetStartupRace = (GRaceParameters*(__thiscall*)(GRaceDatabase*))0x5DCA00;
 	static inline auto GetRaceFromHash = (GRaceParameters*(__thiscall*)(GRaceDatabase*, uint32_t))0x5FB710;
 };
 static_assert(sizeof(GRaceDatabase) == 0x40);
