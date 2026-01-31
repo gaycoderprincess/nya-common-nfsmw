@@ -1,10 +1,3 @@
-enum Context {
-	kRaceContext_QuickRace = 0,
-	kRaceContext_Online = 1,
-	kRaceContext_Career = 2,
-	kRaceContext_Count = 3,
-};
-
 class GCharacter;
 class GVault;
 class WorldModel;
@@ -51,6 +44,13 @@ public:
 static_assert(sizeof(GRaceIndexData) == 0x30);
 
 namespace GRace {
+	enum Context {
+		kRaceContext_QuickRace = 0,
+		kRaceContext_Online = 1,
+		kRaceContext_Career = 2,
+		kRaceContext_Count = 3,
+	};
+
 	enum Type {
 		kRaceType_P2P = 0,
 		kRaceType_Circuit = 1,
