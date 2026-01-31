@@ -236,7 +236,7 @@ public:
 	int mRacerCount;
 	bool mIsLoading;
 	PlayMode mPlayMode;
-	Context mRaceContext;
+	GRace::Context mRaceContext;
 	GRaceParameters* mRaceParms;
 	GRaceBin* mRaceBin;
 	GTimer mRaceMasterTimer;
@@ -325,7 +325,7 @@ public:
 	GRaceBin* mBins;
 	void* mGameplayClass;
 	GRaceCustom* mStartupRace;
-	Context mStartupRaceContext;
+	GRace::Context mStartupRaceContext;
 	unsigned int mNumInitialUnlocks;
 	unsigned int* mInitialUnlockHash;
 	GRaceSaveInfo* mRaceScoreInfo;
