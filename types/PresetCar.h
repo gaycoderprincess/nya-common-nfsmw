@@ -6,7 +6,7 @@ public:
 	uint64_t VehicleKey;
 	uint32_t FilterBits;
 	int PhysicsLevel;
-	int PartNameHashes[139];
+	uint32_t PartNameHashes[139];
 };
 static_assert(sizeof(PresetCar) == 0x290);
 auto& PresetCarList = *(bList<PresetCar>*)0x9B2BF4;

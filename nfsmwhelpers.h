@@ -72,7 +72,7 @@ namespace NyaHelpers {
 		car.VehicleKey = record->VehicleKey;
 
 		car.FilterBits = record->FilterBits;
-		//car.PhysicsLevel // todo
+		car.PhysicsLevel = 0; // todo
 
 		for (int i = 0; i < CARSLOTID_NUM; i++) {
 			auto part = CarPartDatabase::GetCarPartByIndex(&CarPartDB, customizations->InstalledPartIndices[i]);
