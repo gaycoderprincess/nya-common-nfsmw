@@ -63,8 +63,11 @@ namespace NyaHelpers {
 	}
 
 	PresetCar CreatePresetCar(FECarRecord* record, FECustomizationRecord* customizations, const char* presetName) {
+		std::string carTypeName = FECarRecord::GetDebugName(record);
+		std::transform(carTypeName.begin(), carTypeName.end(), carTypeName.begin(), [](char c){ return std::toupper(c); });
+
 		PresetCar car;
-		strcpy_s(car.CarTypeName, 32, FECarRecord::GetDebugName(record));
+		strcpy_s(car.CarTypeName, 32, carTypeName.c_str());
 		strcpy_s(car.PresetName, 32, presetName);
 
 		// does this work? it's int64 here
