@@ -127,6 +127,15 @@ public:
 	bVector2 vMaxDataSize;
 	bVector2 vDataPos;
 };
+static_assert(sizeof(FEStatWidget) == 0x4C);
+static_assert(offsetof(FEStatWidget, pData) == 0x30);
+
+struct ResultStat : public FEStatWidget {
+public:
+	FEString* Position;
+	GRacerInfo* RacerInfo;
+};
+static_assert(sizeof(ResultStat) == 0x54);
 
 class FEToggleWidget : public FEStatWidget {
 public:
@@ -295,7 +304,14 @@ public:
 static_assert(offsetof(UIOptionsScreen, mCalledFromPauseMenu) == 0x124);
 
 auto FEPrintf = (int(*)(FEString*, const char*, ...))0x515D70;
-auto FEngSetLanguageHash = (void(*)(const char*, uint32_t, uint32_t))0x525220;
+void FEngSetLanguageHash(const char* a1, uint32_t a2, uint32_t a3) {
+	auto tmp = (void(*)(const char*, uint32_t, uint32_t))0x525220;
+	return tmp(a1, a2, a3);
+}
+void FEngSetLanguageHash(FEString* a1, uint32_t a2) {
+	auto tmp = (void(*)(FEString*, uint32_t))0x515C00;
+	return tmp(a1, a2);
+}
 
 class UIQRChallengeSeries;
 class UIQRMainMenu;

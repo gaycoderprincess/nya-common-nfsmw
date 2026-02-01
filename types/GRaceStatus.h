@@ -150,6 +150,11 @@ public:
 	static inline auto BlowEngine = (void(__thiscall*)(GRacerInfo*))0x600420;
 };
 static_assert(sizeof(GRacerInfo) == 0x194);
+static_assert(offsetof(GRacerInfo, mRanking) == 0x10);
+static_assert(offsetof(GRacerInfo, mKnockedOut) == 0x1C);
+static_assert(offsetof(GRacerInfo, mTotalled) == 0x1D);
+static_assert(offsetof(GRacerInfo, mEngineBlown) == 0x1E);
+static_assert(offsetof(GRacerInfo, mFinishedRacing) == 0x21);
 
 class GRaceBin {
 public:
