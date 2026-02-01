@@ -87,6 +87,7 @@ auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
 #include "types/WRoadNav.h"
 #include "types/Scheduler.h"
 #include "types/FEObject.h"
+#include "types/CarPartDatabase.h"
 
 class BuildRegion {
 public:
@@ -170,3 +171,4 @@ auto& GameD3D = *(IDirect3D9**)0x982BD8;
 auto& GameD3DDevice = *(IDirect3DDevice9**)0x982BDC;
 
 #include "nfsmwhooks.h"
+#include "nfsmwhelpers.h"
