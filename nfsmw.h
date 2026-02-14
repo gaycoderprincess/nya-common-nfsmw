@@ -155,6 +155,8 @@ auto& g_WorldLodLevel = *(int*)0x9017F4;
 auto& g_RacingResolution = *(int*)0x90181C;
 auto& FirstTime = *(bool*)0x901820;
 
+auto& Tweak_InfiniteNOS = *(bool*)0x937804;
+
 auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
 auto& DrawSmear = *(bool*)0x8F9218;

@@ -265,6 +265,27 @@ namespace NyaHooks {
 		}
 	}
 
+	namespace SchedulerHook {
+		std::vector<void(*)()> aPreFunctions;
+		std::vector<void(*)()> aPostFunctions;
+
+		auto OrigFunction = (void(__thiscall*)(Scheduler*, bool))nullptr;
+		void __thiscall HookedFunction(Scheduler* a1, bool a2) {
+			for (auto& func : aPreFunctions) {
+				func();
+			}
+			OrigFunction(a1, a2);
+			for (auto& func : aPostFunctions) {
+				func();
+			}
+		}
+
+		void Init() {
+			if (OrigFunction) return;
+			OrigFunction = (void(__thiscall*)(Scheduler*, bool))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x663DCD, &HookedFunction);
+		}
+	}
+
 	namespace InputBlockerHook {
 		bool bInputsBlocked = false;
 		
