@@ -291,7 +291,15 @@ public:
 	static inline auto EnableBarriers = (void(__thiscall*)(GRaceStatus*))0x5FE330;
 	static inline auto GetRaceTimeRemaining = (float(__thiscall*)(GRaceStatus*))0x5FE090;
 	static inline auto CanUnspawnRoamer = (bool(__thiscall*)(GRaceStatus*, const IVehicle* roamer))0x5E8960;
-	static inline auto GetRacerInfo = (GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*))0x5E8B20;
+
+	GRacerInfo* GetRacerInfo(int a1) {
+		auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, int))0x5DBED0;
+		return f(this, a1);
+	}
+	GRacerInfo* GetRacerInfo(ISimable* a1) {
+		auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*))0x5E8B20;
+		return f(this, a1);
+	}
 };
 static_assert(sizeof(GRaceStatus) == 0x4558);
 static_assert(offsetof(GRaceStatus, mRaceParms) == 0x1968);
