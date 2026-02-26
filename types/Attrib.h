@@ -1,4 +1,10 @@
 namespace Attrib {
+	class StringKey {
+	public:
+		unsigned int mHash32;
+		const char *mString;
+	};
+
 	class Vault;
 	class Collection;
 
