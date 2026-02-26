@@ -11,6 +11,7 @@ typedef uint32_t HSIMPROFILE;
 typedef uint32_t HSIMTASK;
 
 auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
+auto GAME_free = (void(*)(void*))0x7C7250;
 
 #include "types/bNode.h"
 #include "types/UMath.h"
@@ -65,6 +66,7 @@ auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
 #include "types/IPursuit.h"
 #include "types/IGameState.h"
 #include "types/ISceneryModel.h"
+#include "types/IDisposable.h"
 #include "types/IHud.h"
 #include "types/SimSystem.h"
 #include "types/GRaceStatus.h"
@@ -119,6 +121,34 @@ public:
 	static inline auto SetGenericCameraToPlay = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0;
 };
 
+class SimpleRigidBody {
+public:
+	static inline auto& mCount = *(int*)0x9377D0;
+};
+#define DISPOSABLE_LIST UTL::Listable<IDisposable, 160, 0x92CA88>
+
+class FreeBlock;
+class AllocDesc;
+class FastMem {
+public:
+	FreeBlock* mFreeLists[64];
+	const char* mName;
+	unsigned int mExpansionSize;
+	unsigned int mLocks;
+	bool mInited;
+	void* mBlock;
+	unsigned int mBytes;
+	unsigned int mUsed;
+	unsigned int mAlloc[64];
+	unsigned int mAvail[64];
+	unsigned int mAllocOver;
+	AllocDesc* mTrack;
+	unsigned int mTrackMax;
+	unsigned int mTrackCount;
+};
+static_assert(sizeof(FastMem) == 0x32C);
+static_assert(offsetof(FastMem, mBytes) == 0x114);
+
 auto ExecuteRenderData = (void(*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(*)(const char*, ...))0x573140;
@@ -154,6 +184,10 @@ auto& g_VisualTreatment = *(bool*)0x901828;
 auto& g_WorldLodLevel = *(int*)0x9017F4;
 auto& g_RacingResolution = *(int*)0x90181C;
 auto& FirstTime = *(bool*)0x901820;
+
+class SlotPool;
+auto bNewSlotPool = (SlotPool*(*)(int slot_size, int num_slots, const char *debug_name, int memory_pool))0x4662E0;
+auto& CarLoaderPoolSizes = *(uint32_t*)0x8F7EF0;
 
 auto& Tweak_InfiniteNOS = *(bool*)0x937804;
 

@@ -6,7 +6,12 @@ namespace UTL {
 		uint32_t mCapacity;
 		uint32_t mSize;
 
-		virtual ~Vector() {};
+		virtual void _dtor(int);
+		virtual T* AllocVectorSpace(size_t num, size_t alignment);
+		virtual void FreeVectorSpace(T* buffer, size_t num);
+		virtual size_t GetGrowSize(size_t minSize);
+		virtual size_t GetMaxCapacity();
+		virtual void OnGrowRequest(size_t newSize);
 
 		T operator[](int i) { return mBegin[i]; }
 
@@ -38,8 +43,15 @@ namespace UTL {
 		T mVectorSpace[capacity];
 	};
 
+	// UTL::Listable<IDisposable,256>::_mTable
+	template <typename T, uint32_t capacity, uintptr_t listAddress>
+	class Listable : public FixedVector<T*, capacity> {
+	public:
+		static inline auto& _mTable = *(Listable<T, capacity, listAddress>*)listAddress;
+	};
+
 	// UTL::ListableSet<IPlayer,12,enum ePlayerList,3>::_ListSet UTL::ListableSet<IPlayer,12,enum ePlayerList,3>::_mLists
-	template <typename T, int count, typename E, int capacity, uintptr_t listAddress>
+	template <typename T, int count, typename E, uint32_t capacity, uintptr_t listAddress>
 	class ListableSet {
 	public:
 		FixedVector<T*, count> _buckets[capacity];
