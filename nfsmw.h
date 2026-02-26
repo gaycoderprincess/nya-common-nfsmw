@@ -90,6 +90,8 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/Scheduler.h"
 #include "types/FEObject.h"
 #include "types/CarPartDatabase.h"
+#include "types/FastMem.h"
+#include "types/Smackable.h"
 
 class BuildRegion {
 public:
@@ -126,28 +128,6 @@ public:
 	static inline auto& mCount = *(int*)0x9377D0;
 };
 #define DISPOSABLE_LIST UTL::Listable<IDisposable, 160, 0x92CA88>
-
-class FreeBlock;
-class AllocDesc;
-class FastMem {
-public:
-	FreeBlock* mFreeLists[64];
-	const char* mName;
-	unsigned int mExpansionSize;
-	unsigned int mLocks;
-	bool mInited;
-	void* mBlock;
-	unsigned int mBytes;
-	unsigned int mUsed;
-	unsigned int mAlloc[64];
-	unsigned int mAvail[64];
-	unsigned int mAllocOver;
-	AllocDesc* mTrack;
-	unsigned int mTrackMax;
-	unsigned int mTrackCount;
-};
-static_assert(sizeof(FastMem) == 0x32C);
-static_assert(offsetof(FastMem, mBytes) == 0x114);
 
 auto ExecuteRenderData = (void(*)())0x6E2F50;
 
