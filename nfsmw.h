@@ -123,6 +123,11 @@ public:
 	static inline auto SetGenericCameraToPlay = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0;
 };
 
+class RigidBody {
+public:
+	static inline auto& mCount = *(int*)0x9377C8;
+};
+
 class SimpleRigidBody {
 public:
 	static inline auto& mCount = *(int*)0x9377D0;
@@ -135,6 +140,7 @@ auto FEngHashString = (uint32_t(*)(const char*, ...))0x573140;
 auto FEHashUpper = (uint32_t(*)(const char*))0x5AF1C0;
 auto bStringHashUpper = (uint32_t(*)(const char*))0x460BC0;
 auto bInitTicker = (void(*)(float))0x45CDD0;
+auto bCountFreeMemory = (size_t(*)(int))0x464050;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
 
 auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
