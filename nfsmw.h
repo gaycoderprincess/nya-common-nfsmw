@@ -26,7 +26,6 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/RideInfo.h"
 #include "types/FEPlayerCarDB.h"
 #include "types/GarageMainScreen.h"
-#include "types/UserProfile.h"
 #include "types/GameFlowManager.h"
 #include "types/FEMarkerManager.h"
 #include "types/WWorldPos.h"
@@ -70,6 +69,7 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/IHud.h"
 #include "types/SimSystem.h"
 #include "types/GRaceStatus.h"
+#include "types/UserProfile.h"
 #include "types/EAX_CarState.h"
 #include "types/SoundAI.h"
 #include "types/cFEng.h"
@@ -146,6 +146,7 @@ auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technicall
 auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
 auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
+auto Game_JumpToCarLot = (void(*)())0x605250;
 
 auto LZCompress = (uint32_t(*)(uint8_t *pSrc, uint32_t sourceSize, uint8_t *pDst))0x65B350;
 auto LZDecompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x650350;
