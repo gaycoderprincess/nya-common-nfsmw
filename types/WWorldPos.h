@@ -16,6 +16,18 @@ public:
 	uint16_t PAD;
 };
 
+class WCollisionBarrier {
+public:
+	UMath::Vector4 fPts[2];
+};
+
+class WCollisionBarrierListEntry {
+public:
+	WCollisionBarrier fB;
+	Attrib::Collection* fSurfaceRef;
+	float fDistanceToSq;
+};
+
 class WWorldPos {
 public:
 	WCollisionTri fFace;

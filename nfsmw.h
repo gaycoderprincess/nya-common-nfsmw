@@ -87,6 +87,7 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/GrandSceneryCullInfo.h"
 #include "types/eEffect.h"
 #include "types/WCollisionMgr.h"
+#include "types/WCollider.h"
 #include "types/WRoadNav.h"
 #include "types/Scheduler.h"
 #include "types/FEObject.h"
@@ -109,9 +110,10 @@ public:
 	static inline auto IsFadeScreenOn = (bool(*)())0x569BB0;
 };
 
+class MPerpBusted;
 class NISListenerActivity {
 public:
-	auto MessageBusted(int a1) { auto f = (void(__thiscall*)(NISListenerActivity*, int))0x44DC70; return f(this, a1); }
+	auto MessageBusted(MPerpBusted* message) { auto f = (void(__thiscall*)(NISListenerActivity*, MPerpBusted*))0x44DC70; return f(this, message); }
 };
 
 class PauseMenu {
@@ -121,7 +123,7 @@ public:
 
 class ICEManager {
 public:
-	auto SetGenericCameraToPlay(const char* a1, const char* a2) { auto f = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0; return f(this, a1, a2); }
+	auto SetGenericCameraToPlay(const char* groupName, const char* trackName) { auto f = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0; return f(this, groupName, trackName); }
 };
 
 class RigidBody {
@@ -144,8 +146,8 @@ class GManager {
 public:
 	static inline auto& mObj = *(GManager**)0x91E00C;
 
-	auto AddSMS(int a1) { auto f = (void(__thiscall*)(GManager*, int))0x5F5120; return f(this, a1); }
-	auto DispatchSMSMessage(int a1) { auto f = (void(__thiscall*)(GManager*, int))0x5DDD20; return f(this, a1); }
+	auto AddSMS(int smsID) { auto f = (void(__thiscall*)(GManager*, int))0x5F5120; return f(this, smsID); }
+	auto DispatchSMSMessage(int smsID) { auto f = (void(__thiscall*)(GManager*, int))0x5DDD20; return f(this, smsID); }
 };
 
 auto ExecuteRenderData = (void(*)())0x6E2F50;

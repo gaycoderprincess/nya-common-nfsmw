@@ -296,8 +296,8 @@ public:
 	auto EnableBarriers() { auto f = (void(__thiscall*)(GRaceStatus*))0x5FE330; return f(this); }
 	auto GetRaceTimeRemaining() { auto f = (float(__thiscall*)(GRaceStatus*))0x5FE090; return f(this); }
 	auto CanUnspawnRoamer(const IVehicle* roamer) { auto f = (bool(__thiscall*)(GRaceStatus*, const IVehicle* roamer))0x5E8960; return f(this, roamer); }
-	GRacerInfo* GetRacerInfo(int a1) { auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, int))0x5DBED0; return f(this, a1); }
-	GRacerInfo* GetRacerInfo(ISimable* a1) { auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*))0x5E8B20; return f(this, a1); }
+	GRacerInfo* GetRacerInfo(int index) { auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, int))0x5DBED0; return f(this, index); }
+	GRacerInfo* GetRacerInfo(ISimable* isim) { auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*))0x5E8B20; return f(this, isim); }
 };
 static_assert(sizeof(GRaceStatus) == 0x4558);
 static_assert(offsetof(GRaceStatus, mRaceParms) == 0x1968);
@@ -345,6 +345,6 @@ public:
 	static inline auto& mObj = *(GRaceDatabase**)0x91E004;
 
 	auto GetStartupRace() { auto f = (GRaceParameters*(__thiscall*)(GRaceDatabase*))0x5DCA00; return f(this); }
-	auto GetRaceFromHash(uint32_t a1) { auto f = (GRaceParameters*(__thiscall*)(GRaceDatabase*, uint32_t))0x5FB710; return f(this, a1); }
+	auto GetRaceFromHash(uint32_t hash) { auto f = (GRaceParameters*(__thiscall*)(GRaceDatabase*, uint32_t))0x5FB710; return f(this, hash); }
 };
 static_assert(sizeof(GRaceDatabase) == 0x40);

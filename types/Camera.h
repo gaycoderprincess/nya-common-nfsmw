@@ -45,7 +45,7 @@ public:
 	static inline auto& JollyRancherResponse = *(JollyRancherResponsePacket*)0x911190;
 	static inline auto& StopUpdating = *(bool*)0x911020;
 
-	auto SetCameraMatrix(const bMatrix4* a1, float a2) { auto f = (void(__thiscall*)(Camera*, const bMatrix4*, float))0x4700D0; return f(this, a1, a2); }
+	auto SetCameraMatrix(const bMatrix4* m, float fTime) { auto f = (void(__thiscall*)(Camera*, const bMatrix4*, float))0x4700D0; return f(this, m, fTime); }
 };
 //static_assert(sizeof(Camera) == 0x290);
 

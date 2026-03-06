@@ -256,9 +256,9 @@ public:
 	ePostRaceOptions PostRaceOptionChosen;
 
 	auto IsFinalEpicChase() { auto f = (bool(__thiscall*)(cFrontendDatabase*))0x56DC00; return f(this); }
-	auto GetRaceNameHash(int a1) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E010; return f(this, a1); }
-	auto GetRaceIconHash(int a1) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E090; return f(this, a1); }
-	auto GetMilestoneIconHash(int a1, bool a2) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, int, bool))0x56DEA0; return f(this, a1, a2); }
+	auto GetRaceNameHash(GRace::Type raceType) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, GRace::Type))0x56E010; return f(this, raceType); }
+	auto GetRaceIconHash(GRace::Type raceType) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, GRace::Type))0x56E090; return f(this, raceType); }
+	auto GetMilestoneIconHash(uint32_t type, bool isMilestone) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, uint32_t, bool))0x56DEA0; return f(this, type, isMilestone); }
 };
 static_assert(offsetof(cFrontendDatabase, CurrentUserProfiles[0]) == 0x10);
 static_assert(offsetof(cFrontendDatabase, FEGameMode) == 0x12C);

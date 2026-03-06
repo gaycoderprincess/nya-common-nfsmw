@@ -12,7 +12,7 @@ namespace Attrib {
 	class Class {
 	public:
 		auto GetFirstCollection() { auto f = (uint32_t(__thiscall*)(Class*))0x456B00; return f(this); }
-		auto GetNextCollection(uint32_t a1) { auto f = (uint32_t(__thiscall*)(Class*, uint32_t))0x456B20; return f(this, a1); }
+		auto GetNextCollection(uint32_t prev) { auto f = (uint32_t(__thiscall*)(Class*, uint32_t))0x456B20; return f(this, prev); }
 	};
 
 	class Collection {
@@ -62,7 +62,7 @@ namespace Attrib {
 	public:
 		static inline auto& sThis = *(Database**)0x90DCBC;
 
-		auto GetClass(uint32_t a1) { auto f = (Class*(__thiscall*)(Database*, uint32_t))0x455BC0; return f(this, a1); }
+		auto GetClass(uint32_t k) { auto f = (Class*(__thiscall*)(Database*, uint32_t))0x455BC0; return f(this, k); }
 	};
 
 	auto FindCollection = (Collection*(*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;

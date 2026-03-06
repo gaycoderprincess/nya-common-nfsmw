@@ -41,15 +41,15 @@ public:
 
 class EQuitToFE : public Event::Event {
 public:
-	static EQuitToFE* Create(eGarageType a1, const char* a2) {
-		return ((EQuitToFE*(__thiscall*)(EQuitToFE*, eGarageType, const char*))0x62FE40)((EQuitToFE*)::Event::__nw(16), a1, a2);
+	static EQuitToFE* Create(eGarageType pGarageType, const char* pFirstScreenName) {
+		return ((EQuitToFE*(__thiscall*)(EQuitToFE*, eGarageType, const char*))0x62FE40)((EQuitToFE*)::Event::__nw(16), pGarageType, pFirstScreenName);
 	}
 };
 
 class EEnterBin : public Event::Event {
 public:
-	static EEnterBin* Create(int a1) {
-		return ((EEnterBin*(__thiscall*)(EEnterBin*, int))0x62C2D0)((EEnterBin*)::Event::__nw(12), a1);
+	static EEnterBin* Create(int pBinIndex) {
+		return ((EEnterBin*(__thiscall*)(EEnterBin*, int))0x62C2D0)((EEnterBin*)::Event::__nw(12), pBinIndex);
 	}
 };
 
