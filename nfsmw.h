@@ -16,6 +16,7 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/bNode.h"
 #include "types/UMath.h"
 #include "types/UCOM.h"
+#include "types/FastMem.h"
 #include "types/ListableSet.h"
 #include "types/Attrib.h"
 #include "types/AttribGen.h"
@@ -92,7 +93,6 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/Scheduler.h"
 #include "types/FEObject.h"
 #include "types/CarPartDatabase.h"
-#include "types/FastMem.h"
 #include "types/Smackable.h"
 
 class BuildRegion {

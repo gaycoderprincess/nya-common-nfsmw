@@ -153,20 +153,20 @@ public:
 	}
 
 	virtual void* _dtor(bool a1) { return ((FEToggleWidget*(__thiscall*)(FEToggleWidget*, bool))0x528640)(this, a1); }
-	virtual void Act(const char*, uint32_t) = 0;
-	virtual void CheckMouse(const char* a1, float a2, float a3) { ((void(__thiscall*)(FEToggleWidget*, const char*, float, float))0x574540)(this, a1, a2, a3); }
+	virtual void Act(const char* parent_pkg, uint32_t data) = 0;
+	virtual void CheckMouse(const char* parent_pkg, float mouse_x, float mouse_y) { ((void(__thiscall*)(FEToggleWidget*, const char*, float, float))0x574540)(this, parent_pkg, mouse_x, mouse_y); }
 	virtual void Draw() = 0;
 	virtual void Position() { ((void(__thiscall*)(FEToggleWidget*))0x589390)(this); }
 	virtual void Show() { ((void(__thiscall*)(FEToggleWidget*))0x5745B0)(this); }
 	virtual void Hide() { ((void(__thiscall*)(FEToggleWidget*))0x5745F0)(this); }
 	virtual void Enable() { ((void(__thiscall*)(FEToggleWidget*))0x589410)(this); }
 	virtual void Disable() { ((void(__thiscall*)(FEToggleWidget*))0x589440)(this); }
-	virtual void SetFocus(const char* a1) { ((void(__thiscall*)(FEToggleWidget*, const char*))0x574630)(this, a1); }
+	virtual void SetFocus(const char* parent_pkg) { ((void(__thiscall*)(FEToggleWidget*, const char*))0x574630)(this, parent_pkg); }
 	virtual void UnsetFocus() { ((void(__thiscall*)(FEToggleWidget*))0x574660)(this); }
-	virtual void SetPos(const bVector2* a1) { ((void(__thiscall*)(FEToggleWidget*, const bVector2*))0x51A6C0)(this, a1); }
-	virtual void SetPosX(float a1) { ((void(__thiscall*)(FEToggleWidget*, float))0x574480)(this, a1); }
-	virtual void SetPosY(float a1) { ((void(__thiscall*)(FEToggleWidget*, float))0x5744E0)(this, a1); }
-	virtual void BlinkArrows(uint32_t a1) { ((void(__thiscall*)(FEToggleWidget*, uint32_t))0x574670)(this, a1); }
+	virtual void SetPos(const bVector2* pos) { ((void(__thiscall*)(FEToggleWidget*, const bVector2*))0x51A6C0)(this, pos); }
+	virtual void SetPosX(float x) { ((void(__thiscall*)(FEToggleWidget*, float))0x574480)(this, x); }
+	virtual void SetPosY(float y) { ((void(__thiscall*)(FEToggleWidget*, float))0x5744E0)(this, y); }
+	virtual void BlinkArrows(uint32_t data) { ((void(__thiscall*)(FEToggleWidget*, uint32_t))0x574670)(this, data); }
 };
 static_assert(sizeof(FEToggleWidget) == 0x5C);
 
@@ -270,7 +270,7 @@ public:
 	}
 
 	virtual void* _dtor(bool a1) { return ((IconOption*(__thiscall*)(IconOption*, bool))0x51A500)(this, a1); }
-	virtual void React(const char* a1, uint32_t a2, FEObject* a3, uint32_t a4, uint32_t a5) = 0;
+	virtual void React(const char* pkg_name, uint32_t data, FEObject* obj, uint32_t param1, uint32_t param2) = 0;
 };
 static_assert(sizeof(IconOption) == 0x4C);
 
@@ -304,13 +304,13 @@ public:
 static_assert(offsetof(UIOptionsScreen, mCalledFromPauseMenu) == 0x124);
 
 auto FEPrintf = (int(*)(FEString*, const char*, ...))0x515D70;
-void FEngSetLanguageHash(const char* a1, uint32_t a2, uint32_t a3) {
+void FEngSetLanguageHash(const char* pkg_name, uint32_t obj_hash, uint32_t language) {
 	auto tmp = (void(*)(const char*, uint32_t, uint32_t))0x525220;
-	return tmp(a1, a2, a3);
+	return tmp(pkg_name, obj_hash, language);
 }
-void FEngSetLanguageHash(FEString* a1, uint32_t a2) {
+void FEngSetLanguageHash(FEString* text, uint32_t hash) {
 	auto tmp = (void(*)(FEString*, uint32_t))0x515C00;
-	return tmp(a1, a2);
+	return tmp(text, hash);
 }
 
 class UIQRChallengeSeries;

@@ -15,6 +15,7 @@ public:
 	WSurface fSurface;
 	uint16_t PAD;
 };
+static_assert(sizeof(WCollisionTri) == 0x30);
 
 class WCollisionBarrier {
 public:

@@ -16,6 +16,11 @@ public:
 	AllocDesc* mTrack;
 	unsigned int mTrackMax;
 	unsigned int mTrackCount;
+
+	auto Alloc(size_t bytes, char* kind) { auto f = (void*(__thiscall*)(FastMem*, size_t, char*))0x5D29D0; return f(this, bytes, kind); }
+	auto Free(void* ptr, size_t bytes, char* kind) { auto f = (void(__thiscall*)(FastMem*, void*, size_t, char*))0x5D0370; return f(this, ptr, bytes, kind); }
 };
 static_assert(sizeof(FastMem) == 0x32C);
 static_assert(offsetof(FastMem, mBytes) == 0x114);
+
+auto& gFastMem = *(FastMem*)0x925B30;

@@ -86,10 +86,38 @@ namespace eastl {
 		T& operator[](int i) { return mpBegin[i]; }
 
 		auto size() { return mpEnd - mpBegin; }
+		auto capacity() { return mpCapacity - mpBegin; }
 		auto empty() { return mpEnd == mpBegin; }
 
+		void clear() { mpEnd = mpBegin; }
+
+		// had to be implemented manually
+		void reserve(size_t num) {
+			if (size() >= num) return;
+
+			auto newData = (T*)gFastMem.Alloc(sizeof(T)*num, nullptr);
+			memset(newData, 0, sizeof(T)*num);
+
+			// copy new data
+			if (!empty()) {
+				memcpy(newData, mpBegin, sizeof(T)*size());
+			}
+
+			// free old data
+			if (mpBegin) {
+				gFastMem.Free(mpBegin, sizeof(T)*capacity(), nullptr);
+			}
+
+			auto oldSize = size();
+			mpBegin = newData;
+			mpEnd = &newData[oldSize];
+			mpCapacity = &newData[num];
+		}
+
 		void push_back(T value) {
-			if (mpEnd >= mpCapacity) __debugbreak(); // i cant implement expansion like this
+			if (mpEnd >= mpCapacity) {
+				reserve(capacity() == 0 ? 1 : capacity()*2);
+			}
 			*mpEnd = value;
 			mpEnd++;
 		}

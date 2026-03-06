@@ -8,8 +8,8 @@ namespace NyaHooks {
 
 			OMCustom(uint32_t iconHash, uint32_t nameHash, int a3) : IconOption(iconHash, nameHash, a3) {}
 
-			void React(const char* a1, uint32_t a2, FEObject* a3, uint32_t a4, uint32_t a5) override {
-				if (a2 != 0xC407210) return;
+			void React(const char* pkg_name, uint32_t data, FEObject* obj, uint32_t param1, uint32_t param2) override {
+				if (data != 0xC407210) return;
 				FEDatabase->CurrentUserProfiles[0]->TheOptionsSettings.CurrentCategory = (eOptionsCategory)optionId;
 			}
 		};
