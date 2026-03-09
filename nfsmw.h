@@ -95,6 +95,25 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/CarPartDatabase.h"
 #include "types/Smackable.h"
 
+class Wheel {
+public:
+	WWorldPos mWorldPos;
+	UMath::Vector4 mNormal;
+	UMath::Vector3 mPosition;
+	unsigned int mFlags;
+	UMath::Vector3 mForce;
+	float mAirTime;
+	UMath::Vector3 mLocalArm;
+	float mCompression;
+	UMath::Vector3 mWorldArm;
+	int pad;
+	UMath::Vector3 mVelocity;
+	int pad2;
+	Attrib::Instance mSurface;
+	float mSurfaceStick;
+	UMath::Vector4 mIntegral;
+};
+
 class BuildRegion {
 public:
 	static inline auto IsPal = (bool(*)())0x64A110;
