@@ -77,7 +77,7 @@ public:
 	virtual void SetStaging(bool staging) = 0;
 	virtual bool IsStaging() = 0;
 	virtual void Launch() = 0;
-	virtual bool GetPerfectLaunch() = 0;
+	virtual float GetPerfectLaunch() = 0;
 	virtual void SetDriverStyle(DriverStyle style) = 0;
 	virtual DriverStyle GetDriverStyle() = 0;
 	virtual void SetPhysicsMode(PhysicsMode mode) = 0;
