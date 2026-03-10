@@ -6,6 +6,11 @@ namespace Attrib {
 		const char* mString;
 	};
 
+	class Private {
+	public:
+		unsigned char mData[8];
+	};
+
 	class Vault;
 	class Collection;
 

@@ -1,9 +1,22 @@
 class AxlePair {
 public:
 	float Front;
-	float Back;
+	float Rear;
 
 	float At(int i) { return (&Front)[i]; }
+};
+
+struct TireEffectRecord {
+	Attrib::RefSpec mEmitter;
+	float mMinSpeed;
+	float mMaxSpeed;
+};
+
+struct RoadNoiseRecord {
+	float Frequency;
+	float Amplitude;
+	float MinSpeed;
+	float MaxSpeed;
 };
 
 namespace Attrib {
@@ -130,7 +143,7 @@ namespace Attrib {
 		class simsurface : public Instance {
 		public:
 			struct _LayoutStruct {
-				/*Private _Array_TireDriveEffects;
+				Private _Array_TireDriveEffects;
 				TireEffectRecord TireDriveEffects[3];
 				Private _Array_TireSlideEffects;
 				TireEffectRecord TireSlideEffects[3];
@@ -145,7 +158,7 @@ namespace Attrib {
 				float LATERAL_GRIP;
 				float STICK;
 				unsigned short WheelEffectFrequency;
-				unsigned char WheelEffectIntensity;*/
+				unsigned char WheelEffectIntensity;
 			};
 
 			simsurface() {}
