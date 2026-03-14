@@ -13,11 +13,70 @@ namespace Attrib {
 
 	class Vault;
 	class Collection;
+	class ClassPrivate;
+	class Definition;
+	class Node;
 
 	class Class {
 	public:
+		unsigned int mKey;
+		unsigned int mRefCount;
+		ClassPrivate* mPrivates;
+
 		auto GetFirstCollection() { auto f = (uint32_t(__thiscall*)(Class*))0x456B00; return f(this); }
 		auto GetNextCollection(uint32_t prev) { auto f = (uint32_t(__thiscall*)(Class*, uint32_t))0x456B20; return f(this, prev); }
+	};
+
+	class HashMap {
+	public:
+		Node* mTable;
+		unsigned int mTableSize;
+		unsigned int mNumEntries;
+		unsigned short mWorstCollision;
+		unsigned short mKeyShift;
+	};
+
+	class CollectionHashMap {
+	public:
+		Node* mTable;
+		unsigned int mTableSize;
+		unsigned int mNumEntries;
+		unsigned int mFixedAlloc:1;
+		unsigned int mWorstCollision:31;
+	};
+
+	class ClassPrivate : public Class {
+	public:
+		HashMap mLayoutTable;
+		CollectionHashMap mCollections;
+		unsigned short mLayoutSize;
+		unsigned short mNumDefinitions;
+		Definition* mDefinitions;
+		Vault* mSource;
+		const char* mNamePtr;
+	};
+	static_assert(sizeof(ClassPrivate) == 0x3C);
+
+	class Array {
+	public:
+		uint16_t mAlloc;
+		uint16_t mCount;
+		uint16_t mSize;
+		uint16_t mEncodedTypePad;
+	};
+
+	class Node {
+	public:
+		uint32_t mKey;
+		union {
+			void* mPtr;
+			Array* mArray;
+			uint32_t mValue;
+			uint32_t mOffset;
+		};
+		uint16_t mTypeIndex;
+		uint8_t mMax;
+		uint8_t mFlags;
 	};
 
 	class Collection {
@@ -34,6 +93,10 @@ namespace Attrib {
 		auto GetData(uint32_t attributeKey, uint32_t index) {
 			auto f = (void*(__thiscall*)(Collection*, uint32_t attributeKey, uint32_t index))0x454190;
 			return f(this, attributeKey, index);
+		}
+		auto GetNode(uint32_t attributeKey, const Attrib::Collection** container) {
+			auto f = (Node*(__thiscall*)(Collection*, uint32_t attributeKey, const Attrib::Collection **container))0x454030;
+			return f(this, attributeKey, container);
 		}
 	};
 	static_assert(sizeof(Collection) == 0x2C);
