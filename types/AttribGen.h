@@ -3,7 +3,7 @@ public:
 	float Front;
 	float Rear;
 
-	float At(int i) { return (&Front)[i]; }
+	float At(int i) const { return (&Front)[i]; }
 };
 
 struct TireEffectRecord {
@@ -43,6 +43,9 @@ namespace Attrib {
 			pvehicle(uint32_t collection, uint32_t msgPort, void* pInterface) {
 				((pvehicle*(__thiscall*)(pvehicle*, uint32_t, uint32_t, void*))0x4E4EA0)(this, collection, msgPort, pInterface);
 			}
+			~pvehicle() {
+				dtor();
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
@@ -78,6 +81,9 @@ namespace Attrib {
 			frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
 				((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
 			}
+			~frontend() {
+				dtor();
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
@@ -92,6 +98,9 @@ namespace Attrib {
 			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
 			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
 			//}
+			~tires() {
+				dtor();
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
@@ -106,6 +115,9 @@ namespace Attrib {
 			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
 			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
 			//}
+			~brakes() {
+				dtor();
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
@@ -120,6 +132,9 @@ namespace Attrib {
 			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
 			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
 			//}
+			~chassis() {
+				dtor();
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
@@ -134,6 +149,9 @@ namespace Attrib {
 			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
 			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
 			//}
+			~transmission() {
+				dtor();
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
@@ -164,6 +182,9 @@ namespace Attrib {
 			simsurface() {}
 			simsurface(uint32_t collection, uint32_t msgPort, void* pInterface) {
 				((simsurface*(__thiscall*)(simsurface*, uint32_t, uint32_t, void*))0x467C30)(this, collection, msgPort, pInterface);
+			}
+			~simsurface() {
+				dtor();
 			}
 
 			_LayoutStruct* GetLayout() {

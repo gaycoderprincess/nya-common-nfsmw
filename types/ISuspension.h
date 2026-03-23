@@ -7,7 +7,7 @@ public:
 	virtual const UMath::Vector3* GetWheelPos(uint32_t);
 	virtual const UMath::Vector3* GetWheelLocalPos(uint32_t);
 	virtual UMath::Vector3* GetWheelCenterPos(UMath::Vector3*, uint32_t);
-	virtual float GetWheelLoad();
+	virtual float GetWheelLoad(uint32_t);
 	virtual void ApplyVehicleEntryForces(bool, const UMath::Vector3*, bool);
 	virtual float GetWheelRoadHeight(uint32_t);
 	virtual bool IsWheelOnGround(uint32_t);

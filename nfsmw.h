@@ -9,6 +9,7 @@ typedef uint32_t HCAUSE;
 typedef uint32_t HMODEL;
 typedef uint32_t HSIMPROFILE;
 typedef uint32_t HSIMTASK;
+typedef uint32_t HSIMSERVICE;
 
 auto GAME_malloc = (void*(*)(size_t))0x7C66D0;
 auto GAME_free = (void(*)(void*))0x7C7250;

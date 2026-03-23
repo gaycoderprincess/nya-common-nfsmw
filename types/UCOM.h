@@ -18,6 +18,10 @@ namespace UCOM {
 		void Add(T* ref) {
 			return ((void(__thiscall*)(Object*, uint32_t, T*))(0x5D7930))(this, T::IHandle, ref);
 		}
+		template<typename T>
+		void Remove(T* ref) {
+			return ((void(__thiscall*)(Object*, T*))(0x5D5A50))(this, ref);
+		}
 	};
 	static_assert(sizeof(Object) == 0x10);
 

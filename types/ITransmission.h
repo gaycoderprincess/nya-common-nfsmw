@@ -33,15 +33,15 @@ class ITransmission : public UCOM::IUnknown {
 public:
 	static inline uint32_t IHandle = 0x404010;
 
-	virtual GearID GetGear() = 0;
-	virtual GearID GetTopGear() = 0;
-	virtual void Shift(GearID gear) = 0;
-	virtual bool IsGearChanging() = 0;
-	virtual bool IsReversing() = 0;
-	virtual float GetSpeedometer() = 0;
-	virtual float GetMaxSpeedometer() = 0;
-	virtual float GetDriveTorque() = 0;
-	virtual float GetShiftPoint(GearID from_gear, GearID to_gear) = 0;
-	virtual ShiftStatus GetShiftStatus(void) = 0;
-	virtual ShiftPotential GetShiftPotential(void) = 0;
+	virtual GearID GetGear();
+	virtual GearID GetTopGear();
+	virtual bool Shift(GearID gear);
+	virtual bool IsGearChanging();
+	virtual bool IsReversing();
+	virtual float GetSpeedometer();
+	virtual float GetMaxSpeedometer();
+	virtual float GetDriveTorque();
+	virtual float GetShiftPoint(GearID from_gear, GearID to_gear);
+	virtual ShiftStatus GetShiftStatus();
+	virtual ShiftPotential GetShiftPotential();
 };
