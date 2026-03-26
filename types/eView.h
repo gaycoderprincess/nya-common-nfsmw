@@ -4,6 +4,7 @@ class eRenderTarget;
 class ScreenEffectDB;
 class Rain;
 class FacePixelation;
+class Camera;
 class CameraMover;
 class eView;
 class eModel;

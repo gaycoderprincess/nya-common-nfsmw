@@ -19,6 +19,12 @@ struct RoadNoiseRecord {
 	float MaxSpeed;
 };
 
+struct CarBodyMotion {
+	float DegPerG;
+	float MaxGs;
+	float DegPerSec;
+};
+
 namespace Attrib {
 	namespace Gen {
 		class pvehicle : public Instance {
@@ -93,11 +99,21 @@ namespace Attrib {
 		class tires : public Instance {
 		public:
 			struct _LayoutStruct {
+				Private _Array_YAW_CONTROL;
+				float YAW_CONTROL[4];
+				AxlePair GRIP_SCALE;
+				AxlePair DYNAMIC_GRIP;
+				AxlePair ASPECT_RATIO;
+				AxlePair RIM_SIZE;
+				AxlePair STATIC_GRIP;
+				AxlePair SECTION_WIDTH;
+				float STEERING;
+				float YAW_SPEED;
 			};
 
-			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
-			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
-			//}
+			tires(uint32_t collectionKey) {
+				ctor(Attrib::FindCollection(Attrib::StringHash32("tires"), collectionKey), 0, nullptr);
+			}
 			~tires() {
 				dtor();
 			}
@@ -110,11 +126,14 @@ namespace Attrib {
 		class brakes : public Instance {
 		public:
 			struct _LayoutStruct {
+				AxlePair BRAKE_LOCK;
+				AxlePair BRAKES;
+				float EBRAKE;
 			};
 
-			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
-			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
-			//}
+			brakes(uint32_t collectionKey) {
+				ctor(Attrib::FindCollection(Attrib::StringHash32("brakes"), collectionKey), 0, nullptr);
+			}
 			~brakes() {
 				dtor();
 			}
@@ -127,11 +146,30 @@ namespace Attrib {
 		class chassis : public Instance {
 		public:
 			struct _LayoutStruct {
+				AxlePair SHOCK_DIGRESSION;
+				AxlePair SPRING_PROGRESSION;
+				AxlePair TRAVEL;
+				AxlePair RIDE_HEIGHT;
+				AxlePair TRACK_WIDTH;
+				AxlePair SHOCK_EXT_STIFFNESS;
+				AxlePair SHOCK_STIFFNESS;
+				AxlePair SPRING_STIFFNESS;
+				AxlePair SHOCK_VALVING;
+				AxlePair SWAYBAR_STIFFNESS;
+				float ROLL_CENTER;
+				float WHEEL_BASE;
+				float SHOCK_BLOWOUT;
+				float AERO_CG;
+				float RENDER_MOTION;
+				float FRONT_AXLE;
+				float AERO_COEFFICIENT;
+				float FRONT_WEIGHT_BIAS;
+				float DRAG_COEFFICIENT;
 			};
 
-			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
-			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
-			//}
+			chassis(uint32_t collectionKey) {
+				ctor(Attrib::FindCollection(Attrib::StringHash32("chassis"), collectionKey), 0, nullptr);
+			}
 			~chassis() {
 				dtor();
 			}
@@ -144,12 +182,99 @@ namespace Attrib {
 		class transmission : public Instance {
 		public:
 			struct _LayoutStruct {
+				Private _Array_GEAR_RATIO;
+				float GEAR_RATIO[9];
+				Private _Array_DIFFERENTIAL;
+				float DIFFERENTIAL[3];
+				Private _Array_GEAR_EFFICIENCY;
+				float GEAR_EFFICIENCY[9];
+				float TORQUE_CONVERTER;
+				float TORQUE_SPLIT;
+				float CLUTCH_SLIP;
+				float OPTIMAL_SHIFT;
+				float SHIFT_SPEED;
+				float FINAL_GEAR;
 			};
 
-			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
-			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
-			//}
+			transmission(uint32_t collectionKey) {
+				ctor(Attrib::FindCollection(Attrib::StringHash32("transmission"), collectionKey), 0, nullptr);
+			}
 			~transmission() {
+				dtor();
+			}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
+
+		class ecar : public Instance {
+		public:
+			struct _LayoutStruct {
+				Private _Array_TireOffsets;
+				char _Pad_TireOffsets[8];
+				UMath::Vector4 TireOffsets[4];
+				Private _Array_TireSkidWidthKitScale;
+				UMath::Vector2 TireSkidWidthKitScale[7];
+				Private _Array_SkidFX;
+				float SkidFX[2];
+				CarBodyMotion BodyRoll;
+				CarBodyMotion BodySquat;
+				CarBodyMotion BodyDive;
+				Private _Array_SlipFX;
+				float SlipFX[2];
+				Private _Array_TireSkidWidth;
+				float TireSkidWidth[4];
+				const char * CollectionName;
+				float CamberFront;
+				float ReflectionOffset;
+				float CamberRear;
+				float RideHeight;
+				Private _Array_KitWheelOffsetRear;
+				unsigned char KitWheelOffsetRear[6];
+				Private _Array_KitWheelOffsetFront;
+				unsigned char KitWheelOffsetFront[6];
+				char WheelSpokeCount;
+			};
+
+			ecar(uint32_t collectionKey) {
+				ctor(Attrib::FindCollection(Attrib::StringHash32("ecar"), collectionKey), 0, nullptr);
+			}
+			~ecar() {
+				dtor();
+			}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
+
+		class camerainfo : public Instance {
+		public:
+			struct _LayoutStruct {
+				Private _Array_STIFFNESS;
+				float STIFFNESS[2];
+				Private _Array_LATOFFSET;
+				float LATOFFSET[2];
+				Private _Array_LAG;
+				float LAG[2];
+				Private _Array_FOV;
+				float FOV[2];
+				Private _Array_HEIGHT;
+				float HEIGHT[2];
+				Private _Array_ANGLE;
+				float ANGLE[2];
+				const char * CollectionName;
+				Private _Array_TILTING;
+				bool TILTING[2];
+				Private _Array_SELECTABLE;
+				bool SELECTABLE[2];
+			};
+
+			camerainfo(uint32_t collectionKey) {
+				ctor(Attrib::FindCollection(Attrib::StringHash32("camerainfo"), collectionKey), 0, nullptr);
+			}
+			~camerainfo() {
 				dtor();
 			}
 

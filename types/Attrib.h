@@ -117,6 +117,9 @@ namespace Attrib {
 		//~Instance() {
 		//	((void(__thiscall*)(Instance*))0x45A430)(this);
 		//}
+		void ctor(const Collection* collection, uint32_t msgPort, void* pInterface) {
+			((Instance*(__thiscall*)(Instance*, const Collection*, uint32_t, void*))0x452380)(this, collection, msgPort, pInterface);
+		}
 		void dtor() {
 			((void(__thiscall*)(Instance*))0x45A430)(this);
 		}
