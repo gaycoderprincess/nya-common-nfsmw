@@ -50,6 +50,31 @@ public:
 };
 static_assert(sizeof(FEMinList) == 0x10);
 
+class FEColor {
+public:
+	int b;
+	int g;
+	int r;
+	int a;
+};
+
+class FEObjData {
+public:
+	FEColor Col;
+	UMath::Vector3 Pivot;
+	UMath::Vector3 Pos;
+	UMath::Vector4 Rot;
+	UMath::Vector3 Size;
+};
+static_assert(sizeof(FEObjData) == 0x44);
+
+class FEImageData : public FEObjData {
+public:
+	UMath::Vector2 UpperLeft;
+	UMath::Vector2 LowerRight;
+};
+static_assert(sizeof(FEImageData) == 0x54);
+
 class FEObject : public FEMinNode {
 public:
 	unsigned long GUID;
@@ -69,6 +94,7 @@ public:
 	FERenderObject* Cached;
 };
 static_assert(sizeof(FEObject) == 0x5C);
+static_assert(offsetof(FEObject, pData) == 0x2C);
 
 class FEString : public FEObject {
 public:
@@ -80,6 +106,12 @@ public:
 	unsigned long MaxWidth;
 };
 static_assert(sizeof(FEString) == 0x78);
+
+class FEImage : public FEObject {
+public:
+	unsigned long ImageFlags;
+};
+static_assert(sizeof(FEImage) == 0x60);
 
 class FEScrollBar {
 public:
@@ -316,3 +348,12 @@ void FEngSetLanguageHash(FEString* text, uint32_t hash) {
 class UIQRChallengeSeries;
 class UIQRMainMenu;
 auto CreateQRChallengeSeries = (UIQRChallengeSeries*(*)(ScreenConstructorData*))0x570CC0;
+
+class FEClipInfo;
+class cFEngRender {
+public:
+	FEClipInfo* MakeRenderMatrix(FEObjData *pData, bMatrix4 *trans, FEColor *color, int32_t GroupIndex, float extra_scale) {
+		auto tmp = (FEClipInfo*(__thiscall*)(cFEngRender*, FEObjData*, bMatrix4*, FEColor*, int32_t, float))0x5848B0;
+		return tmp(this, pData, trans, color, GroupIndex, extra_scale);
+	}
+};
