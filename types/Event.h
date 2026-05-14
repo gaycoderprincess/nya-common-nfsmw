@@ -53,6 +53,13 @@ public:
 	}
 };
 
+class EAutoSave : public Event::Event {
+public:
+	static EAutoSave* Create() {
+		return ((EAutoSave*(__thiscall*)(EAutoSave*))0x620920)((EAutoSave*)::Event::__nw(8));
+	}
+};
+
 class E911Call : public Event::Event {
 public:
 	static E911Call* Create() {

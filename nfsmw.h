@@ -248,6 +248,8 @@ auto& SkipFEPlayerCar = *(const char**)0x8F86A8;
 auto& SkipFEPlayerPerformance = *(float*)0x926078;
 auto& SkipMovies = *(bool*)0x926144;
 
+auto& ExitTheGameFlag = *(bool*)0x9257EC;
+
 auto& GameWindow = *(HWND*)0x982BF4;
 auto& GameD3D = *(IDirect3D9**)0x982BD8;
 auto& GameD3DDevice = *(IDirect3DDevice9**)0x982BDC;
