@@ -1,4 +1,3 @@
-class WCollisionInstance;
 class WCollisionObject;
 class WCollisionTriBlock : public eastl::vector<WCollisionTri> {};
 class WCollisionInstanceCacheList : public eastl::vector<WCollisionInstance*> {};
