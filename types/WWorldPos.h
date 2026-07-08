@@ -126,3 +126,21 @@ public:
 	static inline auto Update = (bool(__thiscall*)(WWorldPos*, UMath::Vector3* pos, UMath::Vector4* dest, bool usecache, const WCollider* collider, bool keep_valid))0x789CC0;
 };
 static_assert(sizeof(WWorldPos) == 0x3C);
+
+class WCollisionObject;
+class bChunkCarpHeader;
+class WCollisionPack {
+public:
+	unsigned int mSectionNumber;
+	unsigned int mInstanceNum;
+	WCollisionInstance* mInstanceList;
+	unsigned int mObjectNum;
+	WCollisionObject* mObjectList;
+	bChunkCarpHeader* mCarpChunkHeader;
+};
+static_assert(sizeof(WCollisionPack) == 0x18);
+
+class WCollisionAssets {
+public:
+	static inline auto& mCollisionPackList = *(WCollisionPack***)0x9B38A0;
+};
