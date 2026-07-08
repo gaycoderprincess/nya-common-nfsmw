@@ -5,3 +5,4 @@ public:
 
 auto RenderVisibleZones = (void(__cdecl*)(eView*))0x72DFB0;
 auto& ShowSectionBoarder = *(bool*)0x9A3A50;
+auto SceneryGroupEnabledTable = (uint8_t*)0x902160; // [4096]
