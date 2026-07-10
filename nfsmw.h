@@ -242,6 +242,8 @@ auto& DrawSmear = *(bool*)0x8F9218;
 auto& DrawLightFlares = *(bool*)0x8F2918;
 auto& UnlockAllThings = *(bool*)0x926124;
 auto& WorldTimeElapsed = *(float*)0x925970;
+auto& WorldTimeElapsedFrame = *(float*)0x925974;
+auto& RealTimeElapsedFrame = *(float*)0x9259BC;
 
 auto& SkipFE = *(bool*)0x926064;
 auto& SkipFEPlayerCar = *(const char**)0x8F86A8;

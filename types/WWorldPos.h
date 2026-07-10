@@ -50,9 +50,22 @@ namespace CARP {
 		UMath::Vector4 fInvPosRadius;
 	};
 	static_assert(sizeof(CollisionInstance) == 0x40);
+
+	struct CollisionObject {
+		UMath::Vector4 fPosRadius;
+		UMath::Vector4 fDimensions;
+		unsigned char fType;
+		unsigned char fShape;
+		unsigned short fFlags;
+		unsigned short fRenderInstanceInd;
+		CollisionSurface fSurface;
+		float fPAD[2];
+		UMath::Matrix4 fMat;
+	};
 }
 
 class WSurface : public CARP::CollisionSurface {};
+class WCollisionObject : public CARP::CollisionObject {};
 
 class WCollisionInstance : public CARP::CollisionInstance {
 public:
@@ -127,7 +140,6 @@ public:
 };
 static_assert(sizeof(WWorldPos) == 0x3C);
 
-class WCollisionObject;
 class bChunkCarpHeader;
 class WCollisionPack {
 public:
