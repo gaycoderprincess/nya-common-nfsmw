@@ -240,6 +240,7 @@ auto& CarScaleMatrix = *(UMath::Matrix4*)0x9B34B0;
 auto& DrawCars = *(bool*)0x903320;
 auto& DrawSmear = *(bool*)0x8F9218;
 auto& DrawLightFlares = *(bool*)0x8F2918;
+auto& DrawFEng = *(bool*)0x8F374C;
 auto& UnlockAllThings = *(bool*)0x926124;
 auto& WorldTimeElapsed = *(float*)0x925970;
 auto& WorldTimeElapsedFrame = *(float*)0x925974;
