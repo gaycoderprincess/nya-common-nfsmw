@@ -86,4 +86,13 @@ namespace NyaHelpers {
 		}
 		return car;
 	}
+
+	SceneryGroup* FindSceneryGroupById(int id) {
+		auto node = SceneryGroupList.HeadNode.Next;
+		while (node != &SceneryGroupList.HeadNode) {
+			if (node->GroupNumber == id) return node;
+			node = node->Next;
+		}
+		return nullptr;
+	}
 }
