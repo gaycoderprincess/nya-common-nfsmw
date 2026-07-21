@@ -40,7 +40,7 @@ public:
 	static inline auto& mCount = *(int*)0x9377C8;
 };
 static_assert(offsetof(RigidBody, mData) == 0x78);
-static_assert(offsetof(RigidBody, mInvWorldTensor.x) == 0x90);
+static_assert(offsetof(RigidBody, mInvWorldTensor) == 0x90);
 static_assert(offsetof(RigidBody, mCOG) == 0xF0);
 
 class SimpleRigidBody {

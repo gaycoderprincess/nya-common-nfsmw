@@ -71,6 +71,7 @@ class WCollisionObject : public CARP::CollisionObject {};
 class WCollisionInstance : public CARP::CollisionInstance {
 public:
 
+#ifdef NYA_MATH_H
 	// inlined
 	void MakeMatrix(UMath::Matrix4 *m, bool addXLate) {
 		m->x.x = fInvMatRow0Width.x;
@@ -97,6 +98,7 @@ public:
 		m->p.z = fInvPosRadius.z;
 		m->pw = 1.0;
 	}
+#endif
 };
 
 class WCollisionTri {

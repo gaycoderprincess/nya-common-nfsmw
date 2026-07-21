@@ -132,6 +132,7 @@ public:
 			IS_DESTROYED = 2,
 		};
 
+#ifdef NYA_MATH_H
 		const UMath::Vector3 &GetRightVector() const {
 			return *(UMath::Vector3*)&matrix.x;
 		}
@@ -144,6 +145,7 @@ public:
 		const UMath::Vector3 &GetPosition() const {
 			return *(UMath::Vector3*)&matrix.p;
 		}
+#endif
 	};
 	static_assert(sizeof(State) == 0xDC);
 
