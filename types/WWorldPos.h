@@ -50,6 +50,7 @@ namespace CARP {
 		UMath::Vector4 fInvPosRadius;
 	};
 	static_assert(sizeof(CollisionInstance) == 0x40);
+	static_assert(offsetof(CollisionInstance, fCollisionArticle) == 0x1C);
 
 	struct CollisionObject {
 		UMath::Vector4 fPosRadius;
@@ -123,6 +124,7 @@ public:
 };
 
 class WCollider;
+class WCollisionInstanceCacheList;
 class WWorldPos {
 public:
 	WCollisionTri fFace;
@@ -137,6 +139,7 @@ public:
 	}
 
 	static inline auto Update = (bool(__thiscall*)(WWorldPos*, UMath::Vector3* pos, UMath::Vector4* dest, bool usecache, const WCollider* collider, bool keep_valid))0x789CC0;
+	static inline auto FindClosestFace = (bool(__thiscall*)(WWorldPos*, WCollisionInstanceCacheList *instList, UMath::Vector3* ptRaw, bool quitIfOnSameFace))0x786750;
 };
 static_assert(sizeof(WWorldPos) == 0x3C);
 

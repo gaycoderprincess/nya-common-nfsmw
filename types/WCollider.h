@@ -34,4 +34,5 @@ public:
 	auto PrepareRegion(uint32_t updateMask) { auto f = (void(__thiscall*)(WCollider*, uint32_t))0x789320; return f(this, updateMask); }
 };
 static_assert(offsetof(WCollider, fBarrierList) == 0x4C);
+static_assert(offsetof(WCollider, fInstanceCacheList) == 0x3C);
 static_assert(offsetof(WCollider, fTriList) == 0x5C);
