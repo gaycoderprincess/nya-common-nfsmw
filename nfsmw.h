@@ -204,6 +204,7 @@ auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
 auto Game_JumpToCarLot = (void(*)())0x605250;
 auto Game_NotifyRaceFinished = (void(*)(ISimable*))0x6119F0;
+auto Game_EnterPostRaceFlow = (void(*)())0x611F20;
 auto FE_ShowPostRaceScreen = (void(*)(bool))0x60AC20;
 
 auto LZCompress = (uint32_t(*)(uint8_t *pSrc, uint32_t sourceSize, uint8_t *pDst))0x65B350;

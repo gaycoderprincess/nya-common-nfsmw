@@ -394,6 +394,31 @@ namespace NyaHooks {
 		}
 	}
 
+	namespace RenderEnvHook {
+		std::vector<void(*)(eView*)> aPreFunctions;
+		std::vector<void(*)(eView*)> aPostFunctions;
+
+		auto OrigFunction = (void(*)())nullptr;
+		void HookedFunction() {
+			eView* view;
+			asm("\t mov %%esi,%0" : "=r"(view));
+
+			for (auto& func : aPreFunctions) {
+				func(view);
+			}
+			OrigFunction();
+			for (auto& func : aPostFunctions) {
+				func(view);
+			}
+		}
+
+		void Init() {
+			if (OrigFunction) return;
+
+			OrigFunction = (void(*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6DE7CA, &HookedFunction);
+		}
+	}
+
 	namespace RenderWorldHook {		
 		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aPostFunctions;
