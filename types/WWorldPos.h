@@ -45,7 +45,7 @@ namespace CARP {
 		float fHeight;
 		unsigned short fGroupNumber;
 		unsigned short fRenderInstanceInd;
-		const WCollisionArticle* fCollisionArticle;
+		WCollisionArticle* fCollisionArticle;
 		UMath::Vector4 fInvMatRow2Length;
 		UMath::Vector4 fInvPosRadius;
 	};

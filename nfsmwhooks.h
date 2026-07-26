@@ -419,7 +419,7 @@ namespace NyaHooks {
 		}
 	}
 
-	namespace RenderWorldHook {		
+	namespace RenderShadowsHook {
 		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aPostFunctions;
 		
@@ -436,7 +436,29 @@ namespace NyaHooks {
 
 		void Init() {
 			if (OrigFunction) return;
-			
+
+			OrigFunction = (void(*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6E51B7, &HookedFunction);
+		}
+	}
+
+	namespace RenderWorldHook {
+		std::vector<void(*)()> aPreFunctions;
+		std::vector<void(*)()> aPostFunctions;
+
+		auto OrigFunction = (void(*)())nullptr;
+		void HookedFunction() {
+			for (auto& func : aPreFunctions) {
+				func();
+			}
+			OrigFunction();
+			for (auto& func : aPostFunctions) {
+				func();
+			}
+		}
+
+		void Init() {
+			if (OrigFunction) return;
+
 			//0x6DED37
 			//0x6DEEC6
 			//0x6DF24E
