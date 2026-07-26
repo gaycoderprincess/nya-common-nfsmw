@@ -423,12 +423,12 @@ namespace NyaHooks {
 		std::vector<void(*)()> aPreFunctions;
 		std::vector<void(*)()> aPostFunctions;
 		
-		auto OrigFunction = (void(*)())nullptr;
-		void HookedFunction() {
+		auto OrigFunction = (void(__thiscall*)(void*, void*, void*))nullptr;
+		void __thiscall HookedFunction(void* a1, void* a2, void* a3) {
 			for (auto& func : aPreFunctions) {
 				func();
 			}
-			OrigFunction();
+			OrigFunction(a1, a2, a3);
 			for (auto& func : aPostFunctions) {
 				func();
 			}
@@ -437,7 +437,7 @@ namespace NyaHooks {
 		void Init() {
 			if (OrigFunction) return;
 
-			OrigFunction = (void(*)())NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6E51B7, &HookedFunction);
+			OrigFunction = (void(__thiscall*)(void* a1, void* a2, void* a3))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x6E5186, &HookedFunction);
 		}
 	}
 
