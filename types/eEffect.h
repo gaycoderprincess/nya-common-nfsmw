@@ -145,12 +145,14 @@ public:
 		NUM_SHADER_PARAM
 	};
 
+#ifndef NYA_COMMON_NO_D3D
 	// size 0x28
 	struct {
 		char mName[32];
 		uint32_t mHash;
 		D3DXHANDLE mHandle;
 	} mParamMappingTable[NUM_SHADER_PARAM];
+#endif
 };
 
 class eEffect {
