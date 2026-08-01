@@ -100,3 +100,26 @@ public:
 static_assert(sizeof(eView) == 0x70);
 
 auto eViews = (eView*)0x9195E0;
+
+class eLightContext {
+public:
+	int Type;
+};
+
+class eDynamicLightContext : public eLightContext {
+public:
+	uint8_t _0[0x12C];
+};
+static_assert(sizeof(eDynamicLightContext) == 0x130);
+
+class eShaperLightRig;
+auto& ShaperLightsBackRoom = *(eShaperLightRig*)0x8F2B50;
+auto& ShaperLightsCarLot = *(eShaperLightRig*)0x8F2BF0;
+auto& ShaperLightsCShop = *(eShaperLightRig*)0x8F2C90;
+auto& ShaperLightsQRace = *(eShaperLightRig*)0x8F2D30;
+auto& ShaperLightsSafehouse = *(eShaperLightRig*)0x8F2DD0;
+auto& ShaperLightsCarsInGame = *(eShaperLightRig*)0x8F2E70;
+auto& ShaperLightsCharacters = *(eShaperLightRig*)0x8F2F10;
+
+static inline auto eFrameMalloc = (void*(*)(size_t))0x405E80;
+static inline auto elSetupLightContext = (int(*)(eDynamicLightContext *light_context, eShaperLightRig *shaper_lights, bMatrix4 *local_world, bMatrix4 *world_view, bVector4 *camera_world_position, eView *view))0x502520;

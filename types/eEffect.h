@@ -175,6 +175,8 @@ public:
 	virtual void _vf0() = 0;
 	virtual void Start() = 0;
 	virtual void End() = 0;
+
+	static inline auto SetLightContext = (void(*)(eLightContext *context, bMatrix4 *local_world))0x6C7420;
 };
 static_assert(offsetof(eEffect, hD3DXEffect) == 0x48);
 
