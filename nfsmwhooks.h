@@ -425,19 +425,13 @@ namespace NyaHooks {
 		
 		auto OrigFunction = (void(__thiscall*)(void*, void*, void*))nullptr;
 		void __thiscall HookedFunction(void* a1, void* a2, void* a3) {
-			asm("\t pushad");
 			for (auto& func : aPreFunctions) {
 				func();
 			}
-			asm("\t popad");
-
 			OrigFunction(a1, a2, a3);
-
-			asm("\t pushad");
 			for (auto& func : aPostFunctions) {
 				func();
 			}
-			asm("\t popad");
 		}
 
 		void Init() {
